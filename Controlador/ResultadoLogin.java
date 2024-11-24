@@ -1,3 +1,4 @@
+package Controlador;
 public class ResultadoLogin {
     private final boolean exitoso;
     private final String mensaje;

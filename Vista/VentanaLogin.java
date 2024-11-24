@@ -1,4 +1,9 @@
+package Vista;
 import javax.swing.*;
+
+import Controlador.ResultadoLogin;
+import Modelo.ConexionBaseDatos;
+
 import java.awt.*;
 import java.awt.event.*;
 
