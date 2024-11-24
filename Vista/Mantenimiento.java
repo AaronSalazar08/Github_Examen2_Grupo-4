@@ -2,9 +2,7 @@ package Vista;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import Modelo.Mostrar;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -63,7 +61,7 @@ public class Mantenimiento extends JFrame{
         btn_eliminar.setBorderPainted(false);
 
         ImageIcon iconoEliminar = new ImageIcon("Vista/Imagenes/eliminar.png");
-        btn_eliminar.setToolTipText("Eliminar Paciente");
+        btn_eliminar.setToolTipText("Eliminar Usuario");
         if (iconoEliminar != null && iconoEliminar.getImage() != null) {
             Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
@@ -76,7 +74,7 @@ public class Mantenimiento extends JFrame{
         btn_buscar.setBorderPainted(false);
 
         ImageIcon iconoBuscar = new ImageIcon("Vista/Imagenes/buscar.png");
-        btn_buscar.setToolTipText("Buscar Paciente");
+        btn_buscar.setToolTipText("Buscar usuario");
         if (iconoBuscar != null && iconoBuscar.getImage() != null) {
             Image imagenBuscarAjustada = iconoBuscar.getImage().getScaledInstance(40, 30,
                     Image.SCALE_SMOOTH);
@@ -90,7 +88,7 @@ public class Mantenimiento extends JFrame{
         btn_editar.setBorderPainted(false);
 
         ImageIcon iconoEditar = new ImageIcon("Vista/Imagenes/editar.png");
-        btn_editar.setToolTipText("Editar Paciente");
+        btn_editar.setToolTipText("Editar usuario");
         if (iconoEditar != null && iconoEditar.getImage() != null) {
             Image imagenEditarAjustada = iconoEditar.getImage().getScaledInstance(40, 30,
                     Image.SCALE_SMOOTH);
