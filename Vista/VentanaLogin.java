@@ -60,6 +60,9 @@ public class VentanaLogin extends JFrame {
         Image imgUsuario = iconoUsuario.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         JLabel imagenUsuario = new JLabel(new ImageIcon(imgUsuario));
         imagenUsuario.setBounds(30, 110, 20, 20);
+        // Imagen junto al campo de "Usuario"
+        JLabel imagenUsuario = new JLabel(new ImageIcon("Vista/imagenes/user.png")); // Ajusta la ruta de la imagen
+        imagenUsuario.setBounds(-5, 105, 38, 38); // Ajusta el tamaño y la posición de la imagen
 
         campoUsuario = new JTextField();
         campoUsuario.setBounds(60, 110, 210, 30);
@@ -74,6 +77,9 @@ public class VentanaLogin extends JFrame {
         Image imgContrasena = iconoContrasena.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         JLabel imagenContrasena = new JLabel(new ImageIcon(imgContrasena));
         imagenContrasena.setBounds(30, 190, 20, 20);
+        // Imagen junto al campo de "Contraseña"
+        JLabel imagenContrasena = new JLabel(new ImageIcon("Vista/imagenes/lock.png")); // Ajusta la ruta de la imagen
+        imagenContrasena.setBounds(-4, 185, 35, 35); // Ajusta el tamaño y la posición de la imagen
 
         campoContrasena = new JPasswordField();
         campoContrasena.setBounds(60, 190, 210, 30);
@@ -180,5 +186,5 @@ public class VentanaLogin extends JFrame {
             VentanaLogin ventana = new VentanaLogin();
             ventana.setVisible(true);
         });
-    }
+    }//LLamada a el metodo principal
 }
