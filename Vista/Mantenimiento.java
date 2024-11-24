@@ -10,7 +10,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Mantenimiento extends JFrame implements ActionListener {
+public class Mantenimiento extends JFrame{
+
 
     public JPanel panel_mamtenimiento = new JPanel();
     public JButton btn_eliminar, btn_volver, btn_editar, btn_buscar, btn_refrescar;
@@ -20,7 +21,6 @@ public class Mantenimiento extends JFrame implements ActionListener {
     public JTable tabla_usuarios;
     public JScrollPane scroll;
 
-    public static Mostrar mostrar;
 
     public Mantenimiento() {
         this.setTitle("Mantenimiento");
@@ -60,7 +60,6 @@ public class Mantenimiento extends JFrame implements ActionListener {
         btn_eliminar.setBounds(420, 40, 140, 30);
         btn_eliminar.setBackground(new Color(53, 89, 252));
         btn_eliminar.setForeground(new Color(255, 255, 255));
-        btn_eliminar.addActionListener(this);
         btn_eliminar.setBorderPainted(false);
 
         ImageIcon iconoEliminar = new ImageIcon("Vista/Imagenes/eliminar.png");
@@ -74,7 +73,6 @@ public class Mantenimiento extends JFrame implements ActionListener {
         btn_buscar.setBounds(270, 40, 140, 30);
         btn_buscar.setForeground(new Color(255, 255, 255));
         btn_buscar.setBackground(new Color(53, 89, 252));
-        btn_buscar.addActionListener(this);
         btn_buscar.setBorderPainted(false);
 
         ImageIcon iconoBuscar = new ImageIcon("Vista/Imagenes/buscar.png");
@@ -89,7 +87,6 @@ public class Mantenimiento extends JFrame implements ActionListener {
         btn_editar.setBounds(570, 40, 150, 30);
         btn_editar.setForeground(new Color(255, 255, 255));
         btn_editar.setBackground(new Color(53, 89, 252));
-        btn_editar.addActionListener(this);
         btn_editar.setBorderPainted(false);
 
         ImageIcon iconoEditar = new ImageIcon("Vista/Imagenes/editar.png");
@@ -105,7 +102,6 @@ public class Mantenimiento extends JFrame implements ActionListener {
         btn_volver.setBounds(40, 500, 150, 30);
         btn_volver.setForeground(new Color(255, 255, 255));
         btn_volver.setBackground(new Color(53, 89, 252));
-        btn_volver.addActionListener(this);
         btn_volver.setBorderPainted(false);
 
         ImageIcon iconoVolver = new ImageIcon("Vista/Imagenes/volver (1).png");
@@ -120,7 +116,8 @@ public class Mantenimiento extends JFrame implements ActionListener {
         btn_refrescar.setBounds(590, 470, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
-        btn_refrescar.addActionListener(this);
+     
+        
         btn_refrescar.setBorderPainted(false);
 
         ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
@@ -156,15 +153,20 @@ public class Mantenimiento extends JFrame implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == btn_refrescar) {
-
-            mostrar.mostrarDatosEnTabla();
-        }
-
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    public void funcion_btn_refrescar(ActionListener listener) {
+        btn_refrescar.addActionListener(listener);
     }
+
+    public void cargarDatosEnTabla(Object[][] datos, String[] columnNames) {
+        modelo.setColumnIdentifiers(columnNames);
+        modelo.setRowCount(0); // Limpia la tabla
+        for (Object[] fila : datos) {
+            modelo.addRow(fila);
+        }
+        tabla_usuarios.revalidate();
+        tabla_usuarios.repaint();
+        txt_id.setText("");
+    }
+    
 
 }
