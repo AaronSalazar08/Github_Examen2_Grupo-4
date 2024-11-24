@@ -27,7 +27,7 @@ public class Mostrar {
     try {
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/github?verifyServerCertificate=false&useSSL=true",
-                "root", "Proverbios18.22");
+                "root", "Aiug01042004*");
         Statement stmt = con.createStatement();
         rs = stmt.executeQuery(SQL);
 
