@@ -48,7 +48,7 @@ public class VentanaLogin extends JFrame {
         // Título
         JLabel etiquetaTitulo = new JLabel("Inicio de sesión");
         etiquetaTitulo.setFont(new Font("Arial", Font.BOLD, 28));
-        etiquetaTitulo.setBounds(40, 20, 400, 50);
+        etiquetaTitulo.setBounds(45, 20, 400, 50);
         etiquetaTitulo.setForeground(new Color(51, 51, 51));
 
         // Usuario
@@ -59,10 +59,7 @@ public class VentanaLogin extends JFrame {
         ImageIcon iconoUsuario = new ImageIcon("Vista\\imagenes\\Usuario.png");
         Image imgUsuario = iconoUsuario.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         JLabel imagenUsuario = new JLabel(new ImageIcon(imgUsuario));
-        imagenUsuario.setBounds(30, 110, 20, 20);
-        // Imagen junto al campo de "Usuario"
-        JLabel imagenUsuario = new JLabel(new ImageIcon("Vista/imagenes/user.png")); // Ajusta la ruta de la imagen
-        imagenUsuario.setBounds(-5, 105, 38, 38); // Ajusta el tamaño y la posición de la imagen
+        imagenUsuario.setBounds(30, 115, 20, 20);
 
         campoUsuario = new JTextField();
         campoUsuario.setBounds(60, 110, 210, 30);
@@ -76,10 +73,7 @@ public class VentanaLogin extends JFrame {
         ImageIcon iconoContrasena = new ImageIcon("Vista\\imagenes\\Contraseña.png");
         Image imgContrasena = iconoContrasena.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
         JLabel imagenContrasena = new JLabel(new ImageIcon(imgContrasena));
-        imagenContrasena.setBounds(30, 190, 20, 20);
-        // Imagen junto al campo de "Contraseña"
-        JLabel imagenContrasena = new JLabel(new ImageIcon("Vista/imagenes/lock.png")); // Ajusta la ruta de la imagen
-        imagenContrasena.setBounds(-4, 185, 35, 35); // Ajusta el tamaño y la posición de la imagen
+        imagenContrasena.setBounds(30, 195, 20, 20);
 
         campoContrasena = new JPasswordField();
         campoContrasena.setBounds(60, 190, 210, 30);
