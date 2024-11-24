@@ -1,12 +1,11 @@
+package Vista;
 import javax.swing.*;
+
+import Controlador.ResultadoLogin;
+import Modelo.ConexionBaseDatos;
+
 import java.awt.*;
 import java.awt.event.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class VentanaLogin extends JFrame {
     private JTextField campoUsuario;
@@ -56,7 +55,7 @@ public class VentanaLogin extends JFrame {
         etiquetaUsuario.setBounds(30, 80, 240, 25);
 
         // Imagen junto al campo de "Usuario"
-        JLabel imagenUsuario = new JLabel(new ImageIcon("Imagenes/user.png")); // Ajusta la ruta de la imagen
+        JLabel imagenUsuario = new JLabel(new ImageIcon("Vista/imagenes/user.png")); // Ajusta la ruta de la imagen
         imagenUsuario.setBounds(-5, 105, 38, 38); // Ajusta el tamaño y la posición de la imagen
 
         campoUsuario = new JTextField();
@@ -68,7 +67,7 @@ public class VentanaLogin extends JFrame {
         etiquetaContrasena.setBounds(30, 160, 240, 25);
 
         // Imagen junto al campo de "Contraseña"
-        JLabel imagenContrasena = new JLabel(new ImageIcon("Imagenes/lock.png")); // Ajusta la ruta de la imagen
+        JLabel imagenContrasena = new JLabel(new ImageIcon("Vista/imagenes/lock.png")); // Ajusta la ruta de la imagen
         imagenContrasena.setBounds(-4, 185, 35, 35); // Ajusta el tamaño y la posición de la imagen
 
         campoContrasena = new JPasswordField();
@@ -176,5 +175,5 @@ public class VentanaLogin extends JFrame {
             VentanaLogin ventana = new VentanaLogin();
             ventana.setVisible(true);
         });
-    }
+    }//LLamada a el metodo principal
 }
