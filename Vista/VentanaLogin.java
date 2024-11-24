@@ -1,4 +1,5 @@
 package Vista;
+
 import javax.swing.*;
 
 import Controlador.ResultadoLogin;
@@ -11,7 +12,7 @@ public class VentanaLogin extends JFrame {
     private JTextField campoUsuario;
     private JPasswordField campoContrasena;
     private JLabel etiquetaMensaje;
-    private JButton botonLogin; // Asegúrate de declarar el botón aquí.
+    private JButton botonLogin;
 
     @SuppressWarnings("unused")
     public VentanaLogin() {
@@ -43,39 +44,43 @@ public class VentanaLogin extends JFrame {
         panelLogin.setLayout(null);
         panelLogin.setBounds(50, 50, 300, 380);
         panelLogin.setBackground(new Color(255, 255, 255, 240));
-
+        
         // Título
         JLabel etiquetaTitulo = new JLabel("Inicio de sesión");
         etiquetaTitulo.setFont(new Font("Arial", Font.BOLD, 28));
-        etiquetaTitulo.setBounds(40, 20, 400, 50);
+        etiquetaTitulo.setBounds(45, 20, 400, 50);
         etiquetaTitulo.setForeground(new Color(51, 51, 51));
 
         // Usuario
         JLabel etiquetaUsuario = new JLabel("Usuario");
-        etiquetaUsuario.setBounds(30, 80, 240, 25);
+        etiquetaUsuario.setBounds(60, 80, 240, 25);
 
-        // Imagen junto al campo de "Usuario"
-        JLabel imagenUsuario = new JLabel(new ImageIcon("Vista/imagenes/Usuario.png")); // Ajusta la ruta de la imagen
-        imagenUsuario.setBounds(-5, 105, 38, 38); // Ajusta el tamaño y la posición de la imagen
+        // Imagen de usuario
+        ImageIcon iconoUsuario = new ImageIcon("Vista\\imagenes\\Usuario.png");
+        Image imgUsuario = iconoUsuario.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        JLabel imagenUsuario = new JLabel(new ImageIcon(imgUsuario));
+        imagenUsuario.setBounds(30, 115, 20, 20);
 
         campoUsuario = new JTextField();
-        campoUsuario.setBounds(30, 110, 240, 30);
+        campoUsuario.setBounds(60, 110, 210, 30);
         estilizarCampoTexto(campoUsuario);
 
         // Contraseña
         JLabel etiquetaContrasena = new JLabel("Contraseña");
-        etiquetaContrasena.setBounds(30, 160, 240, 25);
+        etiquetaContrasena.setBounds(60, 160, 240, 25);
 
-        // Imagen junto al campo de "Contraseña"
-        JLabel imagenContrasena = new JLabel(new ImageIcon("Vista/imagenes/Contraseña.png")); // Ajusta la ruta de la imagen
-        imagenContrasena.setBounds(-4, 185, 35, 35); // Ajusta el tamaño y la posición de la imagen
+        // Imagen de contraseña
+        ImageIcon iconoContrasena = new ImageIcon("Vista\\imagenes\\Contraseña.png");
+        Image imgContrasena = iconoContrasena.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+        JLabel imagenContrasena = new JLabel(new ImageIcon(imgContrasena));
+        imagenContrasena.setBounds(30, 195, 20, 20);
 
         campoContrasena = new JPasswordField();
-        campoContrasena.setBounds(30, 190, 240, 30);
+        campoContrasena.setBounds(60, 190, 210, 30);
         estilizarCampoTexto(campoContrasena);
 
         // Botón de inicio de sesión
-        botonLogin = new JButton("Iniciar sesión"); // Asegúrate de que la variable esté declarada aquí
+        botonLogin = new JButton("Iniciar sesión");
         botonLogin.setBounds(30, 250, 240, 35);
         estilizarBoton(botonLogin);
 
@@ -88,12 +93,12 @@ public class VentanaLogin extends JFrame {
         // Añadir componentes al panel
         panelLogin.add(etiquetaTitulo);
         panelLogin.add(etiquetaUsuario);
-        panelLogin.add(imagenUsuario); // Añadir la imagen
+        panelLogin.add(imagenUsuario);
         panelLogin.add(campoUsuario);
         panelLogin.add(etiquetaContrasena);
-        panelLogin.add(imagenContrasena); // Añadir la imagen
+        panelLogin.add(imagenContrasena);
         panelLogin.add(campoContrasena);
-        panelLogin.add(botonLogin); // Añadir el botón
+        panelLogin.add(botonLogin);
         panelLogin.add(etiquetaMensaje);
 
         panelPrincipal.add(panelLogin);

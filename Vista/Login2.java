@@ -54,7 +54,7 @@ public class Login2 {
         ventana.setResizable(false); // Ventana de tamaño fijo
 
         // --------------------- imagen de fondo--------------------------------------------
-        ImageIcon fondoImagen = new ImageIcon("Vista/imagenes/kiznaiverplumblossoms.png");
+        ImageIcon fondoImagen = new ImageIcon("imagenes/kiznaiverplumblossoms.png");
         JLabel fondo = new JLabel(new ImageIcon(fondoImagen.getImage().getScaledInstance(400, 420, Image.SCALE_SMOOTH)));
         fondo.setBounds(0, 0, 400, 420);
         ventana.setContentPane(fondo);
