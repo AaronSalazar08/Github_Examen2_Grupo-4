@@ -71,8 +71,35 @@ public class Mantenimiento extends JFrame{
             Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
         }
+
+
+        btn_eliminar.addActionListener(e -> {
+            String idTexto = txt_id.getText();
+            if (idTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        
+            try {
+                int idUsuario = Integer.parseInt(idTexto);
+                Eliminar eliminador = new Eliminar();
+                String mensaje = eliminador.eliminarUsuario(idUsuario);
+        
+                // Mostrar el mensaje del procedimiento
+                JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        
+                // Limpiar el campo de texto
+                txt_id.setText("");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        );
         
         
+
+
+
 
         btn_buscar = new JButton("Buscar");
         btn_buscar.setBounds(270, 40, 140, 30);
@@ -171,29 +198,4 @@ public class Mantenimiento extends JFrame{
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
         txt_id.setText("");
-    }
-
-    btn_eliminar.addActionListener(e -> {
-        String idTexto = txt_id.getText();
-        if (idTexto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    
-        try {
-            int idUsuario = Integer.parseInt(idTexto);
-            Eliminar eliminador = new Eliminar();
-            String mensaje = eliminador.eliminarUsuario(idUsuario);
-    
-            // Mostrar el mensaje del procedimiento
-            JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
-    
-            // Limpiar el campo de texto
-            txt_id.setText("");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    });
-    
-
-    }
+    }}
