@@ -15,7 +15,7 @@ public class ConexionBaseDatos {
 
     public static ResultadoLogin validarUsuario(String usuario, String contrasena) {
         try (Connection conn = obtenerConexion();
-             CallableStatement stmt = conn.prepareCall("{CALL VerificarUsuario(?, ?)}")) {
+             CallableStatement stmt = conn.prepareCall("{CALL sp_validar_login(?, ?)}")) {
     
             stmt.setString(1, usuario);
             stmt.setString(2, contrasena);

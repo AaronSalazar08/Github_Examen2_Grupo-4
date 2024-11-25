@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.ConexionBaseDatos;
-import Modelo.Mostrar;
+import Modelo.Eliminar;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -69,13 +70,35 @@ public class Mantenimiento extends JFrame{
             Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
         }
-        btn_eliminar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                eliminarUsuario();
+
+
+        btn_eliminar.addActionListener(e -> {
+            String idTexto = txt_id.getText();
+            if (idTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-        });
         
+            try {
+                int idUsuario = Integer.parseInt(idTexto);
+                Eliminar eliminador = new Eliminar();
+                String mensaje = eliminador.eliminarUsuario(idUsuario);
+        
+                // Mostrar el mensaje del procedimiento
+                JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        
+                // Limpiar el campo de texto
+                txt_id.setText("");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        );
+        
+        
+
+
+
 
         btn_buscar = new JButton("Buscar");
         btn_buscar.setBounds(270, 40, 140, 30);
@@ -172,62 +195,4 @@ public class Mantenimiento extends JFrame{
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
         txt_id.setText("");
-    }
-    
-
-    public void eliminarUsuario() {
-    // Obtener el ID del campo de texto
-    String idTexto = txt_id.getText().trim();
-    
-    // Validar que el ID no esté vacío
-    if (idTexto.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        int idUsuario = Integer.parseInt(idTexto); // Convertir el ID a entero
-
-        // Mostrar confirmación
-        int confirmacion = JOptionPane.showConfirmDialog(this, 
-            "¿Está seguro de que desea eliminar el usuario con ID " + idUsuario + "?", 
-            "Confirmación", JOptionPane.YES_NO_OPTION);
-        
-        if (confirmacion == JOptionPane.YES_OPTION) {
-
-            // Conectar a la base de datos
-            ConexionBaseDatos conexion = new ConexionBaseDatos(); // Suponiendo que tienes una clase para manejar conexiones
-            Connection conn = conexion.obtenerConexion();
-
-            // Llamar al procedimiento almacenado
-            CallableStatement stmt = conn.prepareCall("{CALL sp_eliminar_usuario(?, ?, ?)}");
-            stmt.setInt(1, idUsuario); // Primer parámetro: ID del usuario
-            stmt.registerOutParameter(2, java.sql.Types.BOOLEAN); // Segundo parámetro: Indicador de éxito
-            stmt.registerOutParameter(3, java.sql.Types.VARCHAR); // Tercer parámetro: Mensaje de resultado
-
-            stmt.execute(); // Ejecutar el procedimiento
-
-            // Obtener los resultados
-            boolean exito = stmt.getBoolean(2);
-            String mensaje = stmt.getString(3);
-
-            // Mostrar el mensaje al usuario
-            JOptionPane.showMessageDialog(this, mensaje, 
-                exito ? "Operación Exitosa" : "Operación Fallida", 
-                exito ? JOptionPane.INFORMATION_MESSAGE : JOptionPane.ERROR_MESSAGE);
-
-            // Cerrar recursos
-            stmt.close();
-            conn.close();
-        }
-
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "El ID debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar eliminar el usuario: " + e.getMessage(), 
-            "Error", JOptionPane.ERROR_MESSAGE);
-    }
-}
-
-
-}
+    }}
