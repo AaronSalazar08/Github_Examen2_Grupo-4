@@ -142,13 +142,13 @@ public class Mantenimiento extends JFrame {
         }
 
         // Boton para volver al menu principal
-        btn_volver = new JButton("Volver");
+        btn_volver = new JButton("");
         btn_volver.setBounds(40, 500, 150, 30);
-        btn_volver.setForeground(new Color(255, 255, 255));
-        btn_volver.setBackground(new Color(53, 89, 252));
+        btn_volver.setBackground(new Color(255, 255, 255, 240));
         btn_volver.setBorderPainted(false);
+        btn_volver.setOpaque(false);
 
-        ImageIcon iconoVolver = new ImageIcon("Vista/Imagenes/volver (1).png");
+        ImageIcon iconoVolver = new ImageIcon("Vista/imagenes/deshacer.png");
         btn_volver.setToolTipText("Atrás");
         if (iconoVolver != null && iconoVolver.getImage() != null) {
             Image imagenVolverAjustada = iconoVolver.getImage().getScaledInstance(55, 40,
