@@ -14,9 +14,9 @@ public class VentanaLogin extends JFrame {
 
     @SuppressWarnings("unused")
     public VentanaLogin() {
-        setTitle("Inicio de sesión");
+        setTitle("Bienvenido"); //Titulo del panel principal
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 500);
+        setSize(750, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -37,13 +37,23 @@ public class VentanaLogin extends JFrame {
         };
         panelPrincipal.setLayout(null);
 
-        // Panel de inicio de sesión
-        JPanel panelLogin = new JPanel();
+        // Panel de inicio de sesión con bordes redondeados
+        JPanel panelLogin = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(255, 255, 255, 240)); // Fondo blanco con algo de transparencia
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25); // Bordes redondeados
+                g2d.dispose();
+            }
+        };
         panelLogin.setLayout(null);
-        panelLogin.setBounds(50, 50, 300, 380);
-        panelLogin.setBackground(new Color(255, 255, 255, 240));
-        
-        // Título
+        int panelWidth = 300, panelHeight = 380;
+        panelLogin.setOpaque(false); // Transparente para preservar la apariencia
+
+        // Añadir componentes al panelLogin
         JLabel etiquetaTitulo = new JLabel("Inicio de sesión");
         etiquetaTitulo.setFont(new Font("Arial", Font.BOLD, 28));
         etiquetaTitulo.setBounds(45, 20, 400, 50);
@@ -87,7 +97,6 @@ public class VentanaLogin extends JFrame {
         etiquetaMensaje.setBounds(30, 300, 240, 25);
         etiquetaMensaje.setForeground(Color.RED);
         etiquetaMensaje.setHorizontalAlignment(SwingConstants.CENTER);
-
         // Añadir componentes al panel
         panelLogin.add(etiquetaTitulo);
         panelLogin.add(etiquetaUsuario);
@@ -102,6 +111,17 @@ public class VentanaLogin extends JFrame {
         panelPrincipal.add(panelLogin);
         add(panelPrincipal);
 
+        // Centrado inicial
+        centrarPanelLogin(panelLogin, panelPrincipal, panelWidth, panelHeight);
+
+        // Añadir un listener de cambio de tamaño
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                centrarPanelLogin(panelLogin, panelPrincipal, panelWidth, panelHeight);
+            }
+        });
+
         // Acciones de inicio de sesión
         botonLogin.addActionListener(e -> realizarLogin());
 
@@ -115,6 +135,12 @@ public class VentanaLogin extends JFrame {
         };
         campoUsuario.addKeyListener(enterKeyListener);
         campoContrasena.addKeyListener(enterKeyListener);
+    }
+
+    private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
+        int x = (panelPrincipal.getWidth() - panelWidth) / 2;
+        int y = (panelPrincipal.getHeight() - panelHeight) / 2;
+        panelLogin.setBounds(x, y, panelWidth, panelHeight);
     }
 
     private void estilizarCampoTexto(JTextField campoTexto) {
@@ -154,22 +180,39 @@ public class VentanaLogin extends JFrame {
         ResultadoLogin resultado = ConexionBaseDatos.validarUsuario(usuario, contrasena);
         if (resultado.esExitoso()) {
             dispose(); // Cierra la ventana de inicio de sesión
-            mostrarMenuAplicacion();
+            String nombreUsuario = resultado.obtenerNombreUsuario();
+            mostrarMenuAplicacion(nombreUsuario);
         } else {
             mostrarError(resultado.obtenerMensaje());
         }
     }
 
+   /* private void mostrarError(String mensaje) {
+        etiquetaMensaje.setText(mensaje);
+        etiquetaMensaje.setForeground(Color.RED);
+    }*/
     private void mostrarError(String mensaje) {
         etiquetaMensaje.setText(mensaje);
         etiquetaMensaje.setForeground(Color.RED);
+        limpiarCampos(); // Limpia los campos cuando hay error
     }
-
-    private void mostrarMenuAplicacion() {
+    
+    private void limpiarCampos() {
+        campoUsuario.setText(""); // Limpia el campo de usuario
+        campoContrasena.setText(""); // Limpia el campo de contraseña
+    }
+    
+    private void mostrarMenuAplicacion(String nombreUsuario) {
         JFrame ventanaPrincipal = new JFrame("Menú Aplicación");
         ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanaPrincipal.setSize(800, 600);
         ventanaPrincipal.setLocationRelativeTo(null);
+
+        JLabel etiquetaBienvenida = new JLabel("Bienvenido, " + nombreUsuario); // aqui esta el mensajito de Aaron
+        etiquetaBienvenida.setFont(new Font("Arial", Font.BOLD, 24));
+        etiquetaBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
+
+        ventanaPrincipal.add(etiquetaBienvenida, BorderLayout.NORTH);
         ventanaPrincipal.setVisible(true);
     }
 
