@@ -25,7 +25,7 @@ public class ControladorMantenimiento {
 
         Object[][] datos = mostrar.mostrarDatos();
 
-        String [] nombre_columnas = {"ID", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Usuario", "Clave", "Fecha Creacion"};
+        String [] nombre_columnas = {"ID", "1° Nombre", "2° Nombre", "1° Apellido", "2° Apellido", "Usuario", "Clave", "Creado"};
         mantenimiento.cargarDatosEnTabla(datos, nombre_columnas);
     }
 
@@ -41,7 +41,7 @@ public class ControladorMantenimiento {
             JOptionPane.showMessageDialog(null, "Buscando Usuario");
             Object[][] datos = buscar.buscar_ID(id_obtenido);
             JOptionPane.showMessageDialog(null, "Usuario Encontrado");
-            String [] nombre_columnas = {"ID", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Usuario", "Clave", "Fecha Creacion"};
+            String [] nombre_columnas = {"ID", "1° Nombre", "2° Nombre", "1° Apellido", "2° Apellido", "Usuario", "Clave", "Creado"};
             mantenimiento.cargarDatosEnTabla(datos, nombre_columnas);
 
         }

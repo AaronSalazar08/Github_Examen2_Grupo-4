@@ -76,16 +76,16 @@ public class Mantenimiento extends JFrame {
         // JButton
 
         // Boton eliminar para eliminar pacientes
-        btn_eliminar = new JButton("Eliminar");
-        btn_eliminar.setBounds(380, 460, 100, 30);
-        btn_eliminar.setBackground(new Color(53, 89, 252));
+        btn_eliminar = new JButton(" Eliminar");
+        btn_eliminar.setBounds(420, 460, 120, 30);
+        btn_eliminar.setBackground(new Color(255, 0, 0));
         btn_eliminar.setForeground(new Color(255, 255, 255));
         btn_eliminar.setBorderPainted(false);
 
-        ImageIcon iconoEliminar = new ImageIcon("Vista/Imagenes/eliminar.png");
-        btn_eliminar.setToolTipText("Eliminar Usuario");
+        ImageIcon iconoEliminar = new ImageIcon("Vista/Imagenes/basura.png");
+        btn_eliminar.setToolTipText("Eliminar al Usuario del Sistema");
         if (iconoEliminar != null && iconoEliminar.getImage() != null) {
-            Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
+            Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
         }
 
@@ -127,30 +127,30 @@ public class Mantenimiento extends JFrame {
         });
         
 
-        btn_buscar = new JButton("Buscar");
-        btn_buscar.setBounds(270, 40, 140, 30);
+        btn_buscar = new JButton("  Buscar");
+        btn_buscar.setBounds(270, 45, 120, 30);
         btn_buscar.setForeground(new Color(255, 255, 255));
         btn_buscar.setBackground(new Color(53, 89, 252));
         btn_buscar.setBorderPainted(false);
 
-        ImageIcon iconoBuscar = new ImageIcon("Vista/Imagenes/buscar.png");
+        ImageIcon iconoBuscar = new ImageIcon("Vista/Imagenes/busqueda.png");
         btn_buscar.setToolTipText("Buscar usuario");
         if (iconoBuscar != null && iconoBuscar.getImage() != null) {
-            Image imagenBuscarAjustada = iconoBuscar.getImage().getScaledInstance(40, 30,
+            Image imagenBuscarAjustada = iconoBuscar.getImage().getScaledInstance(30, 20,
                     Image.SCALE_SMOOTH);
             btn_buscar.setIcon(new ImageIcon(imagenBuscarAjustada));
         }
 
-        btn_editar = new JButton("Editar");
-        btn_editar.setBounds(500, 460, 100, 30);
+        btn_editar = new JButton("   Editar");
+        btn_editar.setBounds(550, 460, 120, 30);
         btn_editar.setForeground(new Color(255, 255, 255));
-        btn_editar.setBackground(new Color(53, 89, 252));
+        btn_editar.setBackground(new Color(0, 180, 16 ));
         btn_editar.setBorderPainted(false);
 
-        ImageIcon iconoEditar = new ImageIcon("Vista/Imagenes/editar.png");
-        btn_editar.setToolTipText("Editar usuario");
+        ImageIcon iconoEditar = new ImageIcon("Vista/imagenes/lapiz-de-usuario.png");
+        btn_editar.setToolTipText("Editar Datos del Usuario");
         if (iconoEditar != null && iconoEditar.getImage() != null) {
-            Image imagenEditarAjustada = iconoEditar.getImage().getScaledInstance(40, 30,
+            Image imagenEditarAjustada = iconoEditar.getImage().getScaledInstance(30, 20,
                     Image.SCALE_SMOOTH);
             btn_editar.setIcon(new ImageIcon(imagenEditarAjustada));
         }
@@ -170,13 +170,14 @@ public class Mantenimiento extends JFrame {
             btn_volver.setIcon(new ImageIcon(imagenVolverAjustada));
         }
 
-        btn_refrescar = new JButton("Refrescar");
-        btn_refrescar.setBounds(550, 50, 150, 30);
+        btn_refrescar = new JButton("");
+        btn_refrescar.setBounds(620, 60, 60, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
         btn_refrescar.setBorderPainted(false);
+        btn_refrescar.setOpaque(false);
 
-        ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
+        ImageIcon iconoRefrescar = new ImageIcon("Vista/imagenes/gira-a-la-derecha.png");
         btn_refrescar.setToolTipText(
                 "Cada vez que se realice un cambio a la Tabla presione este boton para actualizarla a su estado más reciente");
         if (iconoVolver != null && iconoRefrescar.getImage() != null) {
