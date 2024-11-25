@@ -7,5 +7,10 @@
 			"path": "../../../Desktop/ExamenFinalBD/Imagenes"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"c:\\Users\\umana\\Downloads\\mysql-connector-java-5.1.49.jar"
+		]
+	}
 }
