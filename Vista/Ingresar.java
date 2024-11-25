@@ -1,20 +1,25 @@
 package Vista;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
+import Modelo.ConectarIngresar;
 
 public class Ingresar extends JFrame {
     public static void main(String[] args) {
@@ -25,12 +30,45 @@ public class Ingresar extends JFrame {
     }
 
     public Ingresar() { // Método constructor
-        setBounds(0, 0, 800, 600);
-        setBackground(new Color(255, 255, 255));
-        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setResizable(false);
 
+        // Panel principal con fondo degradado
+        JPanel panelPrincipal = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                int w = getWidth(), h = getHeight();
+                Color color1 = new Color(66, 139, 202);
+                Color color2 = new Color(51, 51, 51);
+                GradientPaint gp = new GradientPaint(0, 0, color1, w, h, color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, w, h);
+            }
+        };
+        panelPrincipal.setLayout(null);
+
+        // Panel de inicio de sesión con bordes redondeados
+        JPanel panelLogin = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(255, 255, 255, 240)); // Fondo blanco con algo de transparencia
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25); // Bordes redondeados
+                g2d.dispose();
+            }
+        };
+        panelLogin.setLayout(null);
+        int panelWidth = 700, panelHeight = 500;
+        panelLogin.setOpaque(false); // Transparente para preservar la apariencia
+
+        
         // Etiqueta de hover
         JLabel hoverMensaje = new JLabel("");
         hoverMensaje.setBounds(0, 0, 200, 20);
@@ -40,22 +78,19 @@ public class Ingresar extends JFrame {
         add(hoverMensaje);
 
         // Campos de texto
-        JTextField TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 230, 100);
-        JTextField TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 230, 160);
-        JTextField TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 230, 220);
-        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido (*)", hoverMensaje, 230, 280);
-        JTextField TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 580, 135);
-        JPasswordField TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 580, 195);
-        JPasswordField TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 580, 255);
+        JTextField TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 160, 100);
+        JTextField TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 160, 160);
+        JTextField TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 160, 220);
+        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido (*)", hoverMensaje, 160, 280);
+        JTextField TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 510, 100);
+        JPasswordField TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 510, 160);
+        JPasswordField TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
 
         // Botones
         JButton Agregar = new JButton("Agregar");
-        Agregar.setBounds(150, 420, 150, 45);
-        Agregar.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
-        Agregar.setBackground(new Color(160, 82, 45));
-        Agregar.setForeground(new Color(61, 43, 31));
-        Agregar.setBorder(BorderFactory.createLineBorder(new Color(92, 51, 23), 2));
-        Agregar.setFocusPainted(false);
+        Agregar.setBounds(300, 360, 150, 35);
+        estilizarBoton(Agregar);
+        Agregar.setToolTipText("Agregar usuario al sistema");
         Agregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,95 +104,128 @@ public class Ingresar extends JFrame {
                 String Apellido1 = TextPrimerApellido.getText();
                 String Apellido2 = TextSegundoApellido.getText();
                 String Usuario = TextLogin.getText();
+                String Nombre2 = TextSegundoNombre.getText();
 
-                if(Nombre1.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Usuario.isEmpty() || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()){
+                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Usuario.isEmpty()
+                        || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Debe de llenar los campos obligatorios (*)", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }else{
-                if (Contraseña.equals(ConfirmarContraseña)) {
-                    JOptionPane.showMessageDialog(null, "Las contraseñas coinciden", "Éxito",
-                            JOptionPane.INFORMATION_MESSAGE);
-//Aqui debe de ir la logica de conectar a la base de datos
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error",
                             JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (Contraseña.equals(ConfirmarContraseña)) {
+                        
+                        ConectarIngresar conexion = new ConectarIngresar();
+                        conexion.Conectar(Nombre1, Nombre2, Apellido1, Apellido2, Usuario, Contraseña);
+
+                TextPrimerNombre.setText("");
+                 TextPrimerApellido.setText("");
+                TextSegundoApellido.setText("");
+                TextLogin.setText("");
+                TextSegundoNombre.setText("");
+                TextConfirmarClave.setText("");
+                TextClave.setText("");
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }
 
             }
 
         });
 
+        
+
         JButton Regresar = new JButton("Regresar");
-        Regresar.setBounds(470, 420, 150, 45);
-        Regresar.setFont(new Font("Comic Sans MS", Font.ITALIC, 18));
-        Regresar.setBackground(new Color(160, 82, 45));
-        Regresar.setForeground(new Color(61, 43, 31));
-        Regresar.setBorder(BorderFactory.createLineBorder(new Color(92, 51, 23), 2));
-        Regresar.setFocusPainted(false);
+        Regresar.setBounds(20, 450, 150, 35);
+        estilizarBoton2(Regresar);
+        Regresar.setToolTipText("Volver al menu principal");
+        Regresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Mantenimiento llamar = new Mantenimiento();
+                llamar.setVisible(true);
+                dispose();
+            }
+
+        });
+
+        ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regresar.png");
+        Image imagenEscalada = iconoRegresar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+        Regresar.setIcon(iconoEscalado);
+
+        ImageIcon iconoGuardar = new ImageIcon("Vista//imagenes//Guardar.png");
+        Image imagenEscalada2 = iconoGuardar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado2 = new ImageIcon(imagenEscalada2);
+        Agregar.setIcon(iconoEscalado2);
 
         // Etiquetas fijas
         JLabel PrimerNombre = new JLabel("Primer nombre");
-        PrimerNombre.setBounds(80, 100, 150, 40);
+        PrimerNombre.setBounds(40, 95, 150, 40);
         PrimerNombre.setForeground(Color.black);
-        PrimerNombre.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(PrimerNombre);
+        panelLogin.add(PrimerNombre);
 
         JLabel SegundoNombre = new JLabel("Segundo nombre");
-        SegundoNombre.setBounds(80, 160, 150, 40);
+        SegundoNombre.setBounds(40, 155, 150, 40);
         SegundoNombre.setForeground(Color.black);
-        SegundoNombre.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(SegundoNombre);
+        panelLogin.add(SegundoNombre);
 
         JLabel PrimerApellido = new JLabel("Primer apellido");
-        PrimerApellido.setBounds(80, 220, 150, 40);
+        PrimerApellido.setBounds(40, 215, 150, 40);
         PrimerApellido.setForeground(Color.black);
-        PrimerApellido.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(PrimerApellido);
+        panelLogin.add(PrimerApellido);
 
         JLabel SegundoApellido = new JLabel("Segundo apellido");
-        SegundoApellido.setBounds(80, 280, 150, 40);
+        SegundoApellido.setBounds(40, 275, 150, 40);
         SegundoApellido.setForeground(Color.black);
-        SegundoApellido.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(SegundoApellido);
+        panelLogin.add(SegundoApellido);
 
         JLabel Login = new JLabel("Nombre usuario");
-        Login.setBounds(445, 135, 150, 40);
+        Login.setBounds(375, 95, 150, 40);
         Login.setForeground(Color.black);
-        Login.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(Login);
+        panelLogin.add(Login);
 
         JLabel Clave = new JLabel("Contraseña");
-        Clave.setBounds(445, 195, 150, 40);
+        Clave.setBounds(375, 155, 150, 40);
         Clave.setForeground(Color.black);
-        Clave.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(Clave);
+        panelLogin.add(Clave);
 
         JLabel ConfirmarClave = new JLabel("Confirmar contraseña");
-        ConfirmarClave.setBounds(445, 255, 150, 40);
+        ConfirmarClave.setBounds(375, 215, 150, 40);
         ConfirmarClave.setForeground(Color.black);
-        ConfirmarClave.setFont(new Font("Agency FB", Font.BOLD, 20));
-        add(ConfirmarClave);
+        panelLogin.add(ConfirmarClave);
 
         // Agregar componentes al panel
-        add(Agregar);
-        add(Regresar);
-        add(TextPrimerNombre);
-        add(TextSegundoNombre);
-        add(TextPrimerApellido);
-        add(TextSegundoApellido);
-        add(TextLogin);
-        add(TextClave);
-        add(TextConfirmarClave);
+        panelLogin.add(Agregar);
+        panelLogin.add(Regresar);
+        panelLogin.add(TextPrimerNombre);
+        panelLogin.add(TextSegundoNombre);
+        panelLogin.add(TextPrimerApellido);
+        panelLogin.add(TextSegundoApellido);
+        panelLogin.add(TextLogin);
+        panelLogin.add(TextClave);
+        panelLogin.add(TextConfirmarClave);
+
+        panelPrincipal.add(panelLogin);
+        add(panelPrincipal);
+
+        centrarPanelLogin(panelLogin, panelPrincipal, panelWidth, panelHeight);
+       
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                centrarPanelLogin(panelLogin, panelPrincipal, panelWidth, panelHeight);
+            }
+        });
+
+
     } // Fin del constructor
 
     private JTextField crearMensajes(String hoverText, JLabel hoverLabel, int x, int y) {
         JTextField textField = new JTextField();
-        textField.setBounds(x, y, 150, 40);
-        textField.setBackground(new Color(101, 237, 225));
-        textField.setForeground(Color.BLACK);
-        textField.setBorder(null);
+        textField.setBounds(x, y, 180, 30);
+
 
         textField.addMouseListener(new MouseAdapter() {
             @Override
@@ -165,7 +233,7 @@ public class Ingresar extends JFrame {
                 hoverLabel.setText(hoverText);
                 hoverLabel.setVisible(true);
                 hoverLabel.setForeground(new Color(17, 183, 255));
-                hoverLabel.setLocation(x, y + 40);
+                hoverLabel.setLocation(x + 40, y + 60);
             }
 
             @Override
@@ -179,10 +247,7 @@ public class Ingresar extends JFrame {
 
     private JPasswordField crearMensajeContras(String hoverText, JLabel hoverLabel, int x, int y) {
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(x, y, 150, 40);
-        passwordField.setBackground(new Color(101, 237, 225));
-        passwordField.setForeground(Color.BLACK);
-        passwordField.setBorder(null);
+        passwordField.setBounds(x, y, 180, 30);
 
         passwordField.addMouseListener(new MouseAdapter() {
             @Override
@@ -190,7 +255,7 @@ public class Ingresar extends JFrame {
                 hoverLabel.setText(hoverText);
                 hoverLabel.setForeground(new Color(17, 183, 255));
                 hoverLabel.setVisible(true);
-                hoverLabel.setLocation(x, y + 40);
+                hoverLabel.setLocation(x + 40, y + 60);
             }
 
             @Override
@@ -200,5 +265,47 @@ public class Ingresar extends JFrame {
         });
 
         return passwordField;
+    }
+
+    private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
+        int x = (panelPrincipal.getWidth() - panelWidth) / 2;
+        int y = (panelPrincipal.getHeight() - panelHeight) / 2;
+        panelLogin.setBounds(x, y, panelWidth, panelHeight);
+    }
+
+    private void estilizarBoton(JButton boton) {
+        boton.setBackground(new Color(0, 128, 128)); // Verde azul oscuro
+        boton.setForeground(Color.WHITE); // Letra blanca
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        boton.setFont(new Font("Arial", Font.BOLD, 16)); // Letra gruesa
+
+        boton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                boton.setBackground(new Color(0, 100, 100)); // Verde azul oscuro más claro
+            }
+
+            public void mouseExited(MouseEvent e) {
+                boton.setBackground(new Color(0, 128, 128)); // Verde azul oscuro
+            }
+        });
+    }
+
+    private void estilizarBoton2(JButton boton) {
+        boton.setBackground(new Color(203, 32, 32));
+        boton.setForeground(Color.WHITE); // Letra blanca
+        boton.setFocusPainted(false);
+        boton.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        boton.setFont(new Font("Arial", Font.BOLD, 16)); // Letra gruesa
+
+        boton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                boton.setBackground(new Color(228, 83, 83));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                boton.setBackground(new Color(203, 32, 32)); 
+            }
+        });
     }
 }

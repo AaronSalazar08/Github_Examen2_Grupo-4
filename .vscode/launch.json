@@ -5,6 +5,13 @@
             "name": "VentanaLogin",
             "request": "launch",
             "mainClass": "Vista.VentanaLogin",
+            "projectName": "Github_Examen2_Grupo-4_2b087277"
+        },
+        {
+            "type": "java",
+            "name": "VentanaLogin",
+            "request": "launch",
+            "mainClass": "Vista.VentanaLogin",
             "projectName": "Github_Examen2_Grupo-4_5c418284"
         },
         {
