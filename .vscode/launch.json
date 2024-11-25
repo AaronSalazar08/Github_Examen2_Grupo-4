@@ -19,6 +19,13 @@
             "name": "VentanaLogin",
             "request": "launch",
             "mainClass": "Vista.VentanaLogin",
+            "projectName": "Github_Examen2_Grupo-4_49a117b4"
+        },
+        {
+            "type": "java",
+            "name": "VentanaLogin",
+            "request": "launch",
+            "mainClass": "Vista.VentanaLogin",
             "projectName": "Github_Examen2_Grupo-4_5c418284"
         },
         {
