@@ -92,26 +92,40 @@ public class Mantenimiento extends JFrame {
         btn_eliminar.addActionListener(e -> {
             String idTexto = txt_id.getText();
             if (idTexto.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+        
             try {
                 int idUsuario = Integer.parseInt(idTexto);
-                Eliminar eliminador = new Eliminar();
-                String mensaje = eliminador.eliminarUsuario(idUsuario);
-
-                // Mostrar el mensaje del procedimiento
-                JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
-
-                // Limpiar el campo de texto
-                txt_id.setText("");
+        
+                // Mostrar mensaje de confirmación
+                int confirmacion = JOptionPane.showConfirmDialog(
+                    this, 
+                    "¿Está seguro de que desea eliminar el usuario con ID " + idUsuario + "?", 
+                    "Confirmar eliminación", 
+                    JOptionPane.YES_NO_OPTION
+                );
+        
+                // Si elige "Sí", proceder con la eliminación
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    Eliminar eliminador = new Eliminar();
+                    String mensaje = eliminador.eliminarUsuario(idUsuario);
+        
+                    // Mostrar el mensaje del procedimiento
+                    JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        
+                    // Limpiar el campo de texto
+                    txt_id.setText("");
+                } else {
+                    // Mensaje opcional para indicar que se canceló la acción
+                    JOptionPane.showMessageDialog(this, "Eliminación cancelada.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
+        
 
         btn_buscar = new JButton("Buscar");
         btn_buscar.setBounds(270, 40, 140, 30);
