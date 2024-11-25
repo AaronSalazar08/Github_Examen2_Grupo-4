@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 public class Buscar {
@@ -31,6 +33,7 @@ public class Buscar {
 
                 ArrayList<Object[]> dataList = new ArrayList<>();
                 while (rs.next()) {
+
                     Object[] rowData = new Object[columnCount];
                     for (int i = 1; i <= columnCount; i++) {
                         rowData[i - 1] = rs.getObject(i);

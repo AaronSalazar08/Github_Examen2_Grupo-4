@@ -236,9 +236,13 @@ public class Mantenimiento extends JFrame {
         btn_buscar.addActionListener(listener);
     }
 
+    public void funcion_btn_editar(ActionListener listener) {
+        btn_editar.addActionListener(listener);
+    }
+
     public void cargarDatosEnTabla(Object[][] datos, String[] columnNames) {
         modelo.setColumnIdentifiers(columnNames);
-        modelo.setRowCount(0); // Limpia la tabla
+        modelo.setRowCount(0); 
         for (Object[] fila : datos) {
             modelo.addRow(fila);
         }
