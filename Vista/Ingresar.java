@@ -30,9 +30,8 @@ public class Ingresar extends JFrame {
     }
 
     public Ingresar() { // Método constructor
-        setBounds(0, 0, 750, 500);
-        setBackground(new Color(255, 255, 255));
-        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
