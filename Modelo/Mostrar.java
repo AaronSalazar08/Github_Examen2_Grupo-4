@@ -16,8 +16,6 @@ public class Mostrar {
 
     public Mantenimiento mantenimiento;
 
-
-
     public Object[][] mostrarDatos() {
     Connection con = null;
     ResultSet rs = null;
@@ -31,11 +29,11 @@ public class Mostrar {
         Statement stmt = con.createStatement();
         rs = stmt.executeQuery(SQL);
 
-        // Obtener metadata de la consulta
+        
         ResultSetMetaData metaData = rs.getMetaData();
         int columnCount = metaData.getColumnCount();
 
-        // Obtener datos
+       
         ArrayList<Object[]> dataList = new ArrayList<>();
         while (rs.next()) {
             Object[] rowData = new Object[columnCount];
@@ -45,14 +43,14 @@ public class Mostrar {
             dataList.add(rowData);
         }
 
-        // Convertir la lista a un array
+        
         Object[][] dataArray = new Object[dataList.size()][];
         return dataList.toArray(dataArray);
 
     } catch (SQLException ex) {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
-        return new Object[0][0]; // Devuelve una matriz vacía si hay un error
+        return new Object[0][0]; 
     } finally {
         try {
             if (rs != null)

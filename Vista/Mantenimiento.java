@@ -3,15 +3,17 @@ package Vista;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import Modelo.Mostrar;
+import Modelo.ConexionBaseDatos;
+import Modelo.Eliminar;
 
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 
-public class Mantenimiento extends JFrame{
-
+public class Mantenimiento extends JFrame {
 
     public JPanel panel_mamtenimiento = new JPanel();
     public JButton btn_eliminar, btn_volver, btn_editar, btn_buscar, btn_refrescar;
@@ -20,7 +22,6 @@ public class Mantenimiento extends JFrame{
     public DefaultTableModel modelo;
     public JTable tabla_usuarios;
     public JScrollPane scroll;
-
 
     public Mantenimiento() {
         this.setTitle("Mantenimiento");
@@ -47,7 +48,6 @@ public class Mantenimiento extends JFrame{
         lb_id.setBounds(40, 30, 200, 60);
 
         // JTextField
-
         txt_id = new JTextField();
         txt_id.setBounds(100, 50, 150, 20);
         txt_id.setBorder(BorderFactory.createLineBorder(new Color(171, 171, 171)));
@@ -63,11 +63,40 @@ public class Mantenimiento extends JFrame{
         btn_eliminar.setBorderPainted(false);
 
         ImageIcon iconoEliminar = new ImageIcon("Vista/Imagenes/eliminar.png");
-        btn_eliminar.setToolTipText("Eliminar Paciente");
+        btn_eliminar.setToolTipText("Eliminar Usuario");
         if (iconoEliminar != null && iconoEliminar.getImage() != null) {
             Image imagenEliminarAjustada = iconoEliminar.getImage().getScaledInstance(40, 30, Image.SCALE_SMOOTH);
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
         }
+
+
+        btn_eliminar.addActionListener(e -> {
+            String idTexto = txt_id.getText();
+            if (idTexto.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        
+            try {
+                int idUsuario = Integer.parseInt(idTexto);
+                Eliminar eliminador = new Eliminar();
+                String mensaje = eliminador.eliminarUsuario(idUsuario);
+        
+                // Mostrar el mensaje del procedimiento
+                JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        
+                // Limpiar el campo de texto
+                txt_id.setText("");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        );
+        
+        
+
+
+
 
         btn_buscar = new JButton("Buscar");
         btn_buscar.setBounds(270, 40, 140, 30);
@@ -76,7 +105,7 @@ public class Mantenimiento extends JFrame{
         btn_buscar.setBorderPainted(false);
 
         ImageIcon iconoBuscar = new ImageIcon("Vista/Imagenes/buscar.png");
-        btn_buscar.setToolTipText("Buscar Paciente");
+        btn_buscar.setToolTipText("Buscar usuario");
         if (iconoBuscar != null && iconoBuscar.getImage() != null) {
             Image imagenBuscarAjustada = iconoBuscar.getImage().getScaledInstance(40, 30,
                     Image.SCALE_SMOOTH);
@@ -90,7 +119,7 @@ public class Mantenimiento extends JFrame{
         btn_editar.setBorderPainted(false);
 
         ImageIcon iconoEditar = new ImageIcon("Vista/Imagenes/editar.png");
-        btn_editar.setToolTipText("Editar Paciente");
+        btn_editar.setToolTipText("Editar usuario");
         if (iconoEditar != null && iconoEditar.getImage() != null) {
             Image imagenEditarAjustada = iconoEditar.getImage().getScaledInstance(40, 30,
                     Image.SCALE_SMOOTH);
@@ -116,8 +145,10 @@ public class Mantenimiento extends JFrame{
         btn_refrescar.setBounds(590, 470, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
-     
-        
+<<<<<<< HEAD
+
+=======
+>>>>>>> e92057814604c211a8fb6b16188a750dd0afc5e9
         btn_refrescar.setBorderPainted(false);
 
         ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
@@ -166,7 +197,10 @@ public class Mantenimiento extends JFrame{
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
         txt_id.setText("");
+<<<<<<< HEAD
     }
-    
 
 }
+=======
+    }}
+>>>>>>> e92057814604c211a8fb6b16188a750dd0afc5e9
