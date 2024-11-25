@@ -145,10 +145,7 @@ public class Mantenimiento extends JFrame {
         btn_refrescar.setBounds(590, 470, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
-<<<<<<< HEAD
 
-=======
->>>>>>> e92057814604c211a8fb6b16188a750dd0afc5e9
         btn_refrescar.setBorderPainted(false);
 
         ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
@@ -197,10 +194,7 @@ public class Mantenimiento extends JFrame {
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
         txt_id.setText("");
-<<<<<<< HEAD
     }
 
 }
-=======
-    }}
->>>>>>> e92057814604c211a8fb6b16188a750dd0afc5e9
+
