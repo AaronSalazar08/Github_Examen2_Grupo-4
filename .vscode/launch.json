@@ -35,6 +35,14 @@
             "mainClass": "Vista.Ingresar",
             "projectName": "Github_Examen2_Grupo-4_2b087277"
         },
+
+        {
+            "type": "java",
+            "name": "Mantenimiento",
+            "request": "launch",
+            "mainClass": "Vista.Mantenimiento",
+            "projectName": "Github_Examen2_Grupo-4_2b087277"
+        },
         {
             "type": "java",
             "request": "launch",

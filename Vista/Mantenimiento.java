@@ -77,7 +77,7 @@ public class Mantenimiento extends JFrame {
 
         // Boton eliminar para eliminar pacientes
         btn_eliminar = new JButton("Eliminar");
-        btn_eliminar.setBounds(420, 40, 140, 30);
+        btn_eliminar.setBounds(380, 460, 100, 30);
         btn_eliminar.setBackground(new Color(53, 89, 252));
         btn_eliminar.setForeground(new Color(255, 255, 255));
         btn_eliminar.setBorderPainted(false);
@@ -128,7 +128,7 @@ public class Mantenimiento extends JFrame {
         }
 
         btn_editar = new JButton("Editar");
-        btn_editar.setBounds(570, 40, 150, 30);
+        btn_editar.setBounds(500, 460, 100, 30);
         btn_editar.setForeground(new Color(255, 255, 255));
         btn_editar.setBackground(new Color(53, 89, 252));
         btn_editar.setBorderPainted(false);
@@ -143,12 +143,12 @@ public class Mantenimiento extends JFrame {
 
         // Boton para volver al menu principal
         btn_volver = new JButton("");
-        btn_volver.setBounds(40, 500, 150, 30);
+        btn_volver.setBounds(20, 480, 100, 40);
         btn_volver.setBackground(new Color(255, 255, 255, 240));
         btn_volver.setBorderPainted(false);
         btn_volver.setOpaque(false);
 
-        ImageIcon iconoVolver = new ImageIcon("Vista/imagenes/deshacer.png");
+        ImageIcon iconoVolver = new ImageIcon("Vista/imagenes/deshacer (1).png");
         btn_volver.setToolTipText("Atrás");
         if (iconoVolver != null && iconoVolver.getImage() != null) {
             Image imagenVolverAjustada = iconoVolver.getImage().getScaledInstance(55, 40,
@@ -157,7 +157,7 @@ public class Mantenimiento extends JFrame {
         }
 
         btn_refrescar = new JButton("Refrescar");
-        btn_refrescar.setBounds(590, 470, 150, 30);
+        btn_refrescar.setBounds(550, 50, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
         btn_refrescar.setBorderPainted(false);
