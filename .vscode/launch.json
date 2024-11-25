@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ingresar",
+            "request": "launch",
+            "mainClass": "Vista.Ingresar",
+            "projectName": "Github_Examen2_Grupo-4_a31b4ec"
+        },
+        {
+            "type": "java",
             "name": "Principal",
             "request": "launch",
             "mainClass": "Principal",
@@ -56,7 +63,6 @@
             "mainClass": "Vista.Ingresar",
             "projectName": "Github_Examen2_Grupo-4_2b087277"
         },
-
         {
             "type": "java",
             "name": "Mantenimiento",
