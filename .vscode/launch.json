@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Ingresar",
+            "request": "launch",
+            "mainClass": "Vista.Ingresar",
+            "projectName": "Github_Examen2_Grupo-4_2b087277"
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Launch Java App"
+        }
+    ]
+}
