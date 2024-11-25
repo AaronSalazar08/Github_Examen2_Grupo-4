@@ -16,7 +16,7 @@ public class VentanaLogin extends JFrame {
     public VentanaLogin() {
         setTitle("Bienvenido"); //Titulo del panel principal
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 500);
+        setSize(750, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 

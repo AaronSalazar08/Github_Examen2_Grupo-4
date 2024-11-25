@@ -3,19 +3,16 @@ package Vista;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import Modelo.ConexionBaseDatos;
 import Modelo.Eliminar;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
+import java.awt.*;
 import java.awt.event.ActionListener;
-import java.sql.CallableStatement;
-import java.sql.Connection;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Mantenimiento extends JFrame {
 
-    public JPanel panel_mamtenimiento = new JPanel();
+ 
     public JButton btn_eliminar, btn_volver, btn_editar, btn_buscar, btn_refrescar;
     public JLabel lb_id;
     public JTextField txt_id;
@@ -23,23 +20,46 @@ public class Mantenimiento extends JFrame {
     public JTable tabla_usuarios;
     public JScrollPane scroll;
 
+    @SuppressWarnings("unused")
     public Mantenimiento() {
-        this.setTitle("Mantenimiento");
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setSize(800, 600);
+        setTitle("Bienvenido"); //Titulo del panel principal
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(750, 600);
         setLocationRelativeTo(null);
-        this.getContentPane().add(panel_mamtenimiento);
-        panel_mamtenimiento.setBackground(new Color(255, 255, 255));
-        panel_mamtenimiento.setBorder(BorderFactory.createLineBorder(new Color(171, 171, 171), 4));
-        panel_mamtenimiento.setLayout(null);
+        setResizable(false);
 
-        Elementos();// llamada al metodo de elementos para agregar los elementos del panel a la
-                    // interfaz grafica
+        // Panel principal con fondo degradado
+        JPanel panel_principal = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                int w = getWidth(), h = getHeight();
+                Color color1 = new Color(66, 139, 202);
+                Color color2 = new Color(51, 51, 51);
+                GradientPaint gp = new GradientPaint(0, 0, color1, w, h, color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, w, h);
+            }
+        };
+        panel_principal.setLayout(null);
 
-    }
-
-    public void Elementos() {
+        // Panel de inicio de sesión con bordes redondeados
+        JPanel panel_mantenimiento = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(255, 255, 255, 240)); // Fondo blanco con algo de transparencia
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25); // Bordes redondeados
+                g2d.dispose();
+            }
+        };
+        panel_mantenimiento.setLayout(null);
+        int panelWidth = 700, panelHeight = 550;
+        panel_mantenimiento.setOpaque(false); // Transparente para preservar la apariencia
 
         // Inicializando constantes para el JPanel
 
@@ -69,34 +89,29 @@ public class Mantenimiento extends JFrame {
             btn_eliminar.setIcon(new ImageIcon(imagenEliminarAjustada));
         }
 
-
         btn_eliminar.addActionListener(e -> {
             String idTexto = txt_id.getText();
             if (idTexto.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese el ID del usuario que desea eliminar.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
-        
+
             try {
                 int idUsuario = Integer.parseInt(idTexto);
                 Eliminar eliminador = new Eliminar();
                 String mensaje = eliminador.eliminarUsuario(idUsuario);
-        
+
                 // Mostrar el mensaje del procedimiento
                 JOptionPane.showMessageDialog(this, mensaje, "Resultado", JOptionPane.INFORMATION_MESSAGE);
-        
+
                 // Limpiar el campo de texto
                 txt_id.setText("");
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El ID debe ser un número entero válido.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        }
-        );
-        
-        
-
-
-
+        });
 
         btn_buscar = new JButton("Buscar");
         btn_buscar.setBounds(270, 40, 140, 30);
@@ -145,7 +160,6 @@ public class Mantenimiento extends JFrame {
         btn_refrescar.setBounds(590, 470, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
-
         btn_refrescar.setBorderPainted(false);
 
         ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
@@ -167,22 +181,44 @@ public class Mantenimiento extends JFrame {
         };
         tabla_usuarios = new JTable(modelo);
         scroll = new JScrollPane(tabla_usuarios);
-        scroll.setBounds(40, 100, 700, 350);
+        scroll.setBounds(30, 100, 650, 350);
 
         // AGREGAR CONSTANTES AL PANEL
-        panel_mamtenimiento.add(lb_id);
-        panel_mamtenimiento.add(btn_buscar);
-        panel_mamtenimiento.add(txt_id);
-        panel_mamtenimiento.add(btn_volver);
-        panel_mamtenimiento.add(btn_eliminar);
-        panel_mamtenimiento.add(btn_editar);
-        panel_mamtenimiento.add(btn_refrescar);
-        panel_mamtenimiento.add(scroll);
+        panel_mantenimiento.add(lb_id);
+        panel_mantenimiento.add(btn_buscar);
+        panel_mantenimiento.add(txt_id);
+        panel_mantenimiento.add(btn_volver);
+        panel_mantenimiento.add(btn_eliminar);
+        panel_mantenimiento.add(btn_editar);
+        panel_mantenimiento.add(btn_refrescar);
+        panel_mantenimiento.add(scroll);
 
+        panel_principal.add(panel_mantenimiento);
+        add(panel_principal);
+
+        centrarPanelLogin(panel_mantenimiento, panel_principal, panelWidth, panelHeight);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                centrarPanelLogin(panel_mantenimiento, panel_principal, panelWidth, panelHeight);
+            }
+        });
+
+    }
+
+    private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
+        int x = (panelPrincipal.getWidth() - panelWidth) / 2;
+        int y = (panelPrincipal.getHeight() - panelHeight) / 2;
+        panelLogin.setBounds(x, y, panelWidth, panelHeight);
     }
 
     public void funcion_btn_refrescar(ActionListener listener) {
         btn_refrescar.addActionListener(listener);
+    }
+
+    public void funcion_btn_buscar(ActionListener listener) {
+        btn_buscar.addActionListener(listener);
     }
 
     public void cargarDatosEnTabla(Object[][] datos, String[] columnNames) {
@@ -197,4 +233,3 @@ public class Mantenimiento extends JFrame {
     }
 
 }
-
