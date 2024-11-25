@@ -16,7 +16,7 @@ public class VentanaLogin extends JFrame {
     public VentanaLogin() {
         setTitle("Bienvenido"); //Titulo del panel principal
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 500);
+        setSize(750, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -187,11 +187,21 @@ public class VentanaLogin extends JFrame {
         }
     }
 
+   /* private void mostrarError(String mensaje) {
+        etiquetaMensaje.setText(mensaje);
+        etiquetaMensaje.setForeground(Color.RED);
+    }*/
     private void mostrarError(String mensaje) {
         etiquetaMensaje.setText(mensaje);
         etiquetaMensaje.setForeground(Color.RED);
+        limpiarCampos(); // Limpia los campos cuando hay error
     }
-
+    
+    private void limpiarCampos() {
+        campoUsuario.setText(""); // Limpia el campo de usuario
+        campoContrasena.setText(""); // Limpia el campo de contraseña
+    }
+    
     private void mostrarMenuAplicacion(String nombreUsuario) {
         JFrame ventanaPrincipal = new JFrame("Menú Aplicación");
         ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
