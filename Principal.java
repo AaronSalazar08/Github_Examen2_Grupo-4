@@ -1,10 +1,10 @@
-import Vista.Menu;
+import Vista.VentanaLogin;
 
 public class Principal {
 
     public static void main(String[] args) {
 
-        Menu mantenimiento = new Menu();
+        VentanaLogin mantenimiento = new VentanaLogin();
         mantenimiento.setVisible(true);
         
     }

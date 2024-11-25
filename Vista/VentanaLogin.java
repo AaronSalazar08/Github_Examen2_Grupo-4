@@ -11,6 +11,7 @@ public class VentanaLogin extends JFrame {
     private JPasswordField campoContrasena;
     private JLabel etiquetaMensaje;
     private JButton botonLogin;
+    String nombreUsuario;
 
     @SuppressWarnings("unused")
     public VentanaLogin() {
@@ -135,6 +136,8 @@ public class VentanaLogin extends JFrame {
         };
         campoUsuario.addKeyListener(enterKeyListener);
         campoContrasena.addKeyListener(enterKeyListener);
+
+        
     }
 
     private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
@@ -180,8 +183,10 @@ public class VentanaLogin extends JFrame {
         ResultadoLogin resultado = ConexionBaseDatos.validarUsuario(usuario, contrasena);
         if (resultado.esExitoso()) {
             dispose(); // Cierra la ventana de inicio de sesión
-            String nombreUsuario = resultado.obtenerNombreUsuario();
-            mostrarMenuAplicacion(nombreUsuario);
+            nombreUsuario = resultado.obtenerNombreUsuario();
+            Menu menu = new Menu(nombreUsuario);
+            JOptionPane.showMessageDialog(null, "Bienvenido");
+            menu.setVisible(true);
         } else {
             mostrarError(resultado.obtenerMensaje());
         }
@@ -196,30 +201,34 @@ public class VentanaLogin extends JFrame {
         etiquetaMensaje.setForeground(Color.RED);
         limpiarCampos(); // Limpia los campos cuando hay error
     }
+
+
+
+    public String getnombreUsuario (){
+
+
+        return nombreUsuario;
+
+
+    }
     
     private void limpiarCampos() {
         campoUsuario.setText(""); // Limpia el campo de usuario
         campoContrasena.setText(""); // Limpia el campo de contraseña
     }
     
-    private void mostrarMenuAplicacion(String nombreUsuario) {
-        JFrame ventanaPrincipal = new JFrame("Menú Aplicación");
-        ventanaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaPrincipal.setSize(800, 600);
-        ventanaPrincipal.setLocationRelativeTo(null);
-
-        JLabel etiquetaBienvenida = new JLabel("Bienvenido, " + nombreUsuario); // aqui esta el mensajito de Aaron
-        etiquetaBienvenida.setFont(new Font("Arial", Font.BOLD, 24));
-        etiquetaBienvenida.setHorizontalAlignment(SwingConstants.CENTER);
-
-        ventanaPrincipal.add(etiquetaBienvenida, BorderLayout.NORTH);
-        ventanaPrincipal.setVisible(true);
-    }
-
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             VentanaLogin ventana = new VentanaLogin();
             ventana.setVisible(true);
         });
     }
+
+
+
+
+
+    
+
 }

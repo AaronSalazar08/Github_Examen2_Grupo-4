@@ -5,24 +5,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+public class Menu extends JFrame implements ActionListener {
 
-
-
-public class Menu  extends JFrame implements ActionListener {
-
-
-    public JButton  botonMantenimiento, botonAgregar, botonApagado, botonUsuario;
-    public JLabel fraseLabel, tituloLabel, labelDescripcion,nombreAdministrador, labelUSuario;
+    public JButton botonMantenimiento, botonAgregar, botonApagado, botonUsuario;
+    public JLabel fraseLabel, tituloLabel, labelDescripcion, nombreAdministrador, labelUSuario;
     private ImageIcon imagen;
-    private JLabel logo;
+    public VentanaLogin instancia;
+   
+    
     private ImageIcon icono;
-    Font fuenteTitulo = new Font("Roboto Slab", Font.BOLD, 24);
-    Font fuenteConst = new Font("Open Sans", Font.PLAIN, 16);
    
-   
-
     @SuppressWarnings("unused")
-    public Menu() {
+    public Menu(String cosa) {
+        this.instancia = instancia;
+        
         setTitle("Inicio de sesión");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -51,113 +47,138 @@ public class Menu  extends JFrame implements ActionListener {
         panelMenu.setLayout(null);
         panelMenu.setBounds(30, 25, 720, 520);
         panelMenu.setBackground(new Color(255, 255, 255, 240));
-        
+
         // Título
         JLabel etiquetaTitulo = new JLabel("Sistema de Mantenimiento");
         etiquetaTitulo.setFont(new Font("Arial", Font.BOLD, 28));
         etiquetaTitulo.setBounds(200, 50, 400, 50);
         etiquetaTitulo.setForeground(new Color(53, 89, 252));
 
-        
-       
-       
-        
-        
+
+        JLabel nombreAdministrador = new JLabel(cosa);
+        nombreAdministrador.setFont(new Font("Arial", Font.ITALIC, 18));
+        nombreAdministrador.setBounds(80, 5, 400, 50);
+        nombreAdministrador.setForeground(new Color(0, 0, 0));
+
+
         // Botón de Agregar Usuario
         botonAgregar = new JButton("          Agregar Usuario           ");
         botonAgregar.setBounds(245, 200, 240, 35);
         botonAgregar.setBackground(new Color(53, 89, 252));
-        botonAgregar.setForeground(Color.white); 
+        botonAgregar.setForeground(Color.white);
         botonAgregar.setToolTipText("Agregar nuevo usuario al sistema");
         ImageIcon iconoAgregar = new ImageIcon("Vista/Imagenes/agregar (2).png");
         Image imagenAgregar = iconoAgregar.getImage();
         Image imagenAgregarAjustada = imagenAgregar.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoAgregarAjustado = new ImageIcon(imagenAgregarAjustada);
         botonAgregar.setIcon(iconoAgregarAjustado);
+        botonAgregar.addActionListener(this);
 
-       
-
-       
-
-        //Boton de Mantenimiento a los usuarios agregados
+        // Botón de Mantenimiento a los usuarios agregados
         botonMantenimiento = new JButton("    Mantenimiento Usuario       ");
         botonMantenimiento.setBounds(245, 290, 240, 35);
         botonMantenimiento.setBackground(new Color(53, 89, 252));
-        botonMantenimiento.setForeground(Color.white); 
+        botonMantenimiento.setForeground(Color.white);
         botonMantenimiento.setToolTipText("Realizar acción sobre usuario");
-
         ImageIcon iconoMantenimiento = new ImageIcon("Vista/Imagenes/Mantenimiento.png");
         Image imagenMantenimiento = iconoMantenimiento.getImage();
         Image imagenMantenimientoAjustada = imagenMantenimiento.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoMantenimientoAjustado = new ImageIcon(imagenMantenimientoAjustada);
         botonMantenimiento.setIcon(iconoMantenimientoAjustado);
-       
+        botonMantenimiento.addActionListener(this);
 
-
-
+        // Botón de Apagado
         botonApagado = new JButton("");
         botonApagado.setBounds(590, 470, 100, 35);
         botonApagado.setBackground(new Color(255, 255, 240));
-        botonApagado.setToolTipText("Si presiona este boton sale del programa");
-        botonApagado.setBorderPainted(false); // Quita el borde
-        botonApagado.setFocusPainted(false);  // Quita el borde al hacer clic
-        botonApagado.setContentAreaFilled(false); 
-
+        botonApagado.setToolTipText("Si presiona este botón sale del programa");
+        botonApagado.setBorderPainted(false);
+        botonApagado.setFocusPainted(false);
+        botonApagado.setContentAreaFilled(false);
+        botonApagado.addActionListener(this);
         ImageIcon iconoApagar = new ImageIcon("Vista/Imagenes/apagado.png");
         Image imagenApagar = iconoApagar.getImage();
         Image imagenApagarAjustada = imagenApagar.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoApagarAjustado = new ImageIcon(imagenApagarAjustada);
         botonApagado.setIcon(iconoApagarAjustado);
 
-
-
-
+        // Botón de Usuario
         botonUsuario = new JButton("");
         botonUsuario.setBounds(1, 10, 100, 35);
         botonUsuario.setBackground(new Color(255, 255, 240));
         botonUsuario.setToolTipText("Cerrar Sesión");
-        botonUsuario.setBorderPainted(false); // Quita el borde
-        botonUsuario.setFocusPainted(false);  // Quita el borde al hacer clic
-        botonUsuario.setContentAreaFilled(false); 
-
+        botonUsuario.setBorderPainted(false);
+        botonUsuario.setFocusPainted(false);
+        botonUsuario.setContentAreaFilled(false);
         ImageIcon iconoUsuario = new ImageIcon("Vista/Imagenes/usuarioo.png");
         Image imagenUsuario = iconoUsuario.getImage();
         Image imagenUsuarioAjustada = imagenUsuario.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoUsuarioAjustado = new ImageIcon(imagenUsuarioAjustada);
         botonUsuario.setIcon(iconoUsuarioAjustado);
-       
-
-
-       
-
-
-        
-      
+        botonUsuario.addActionListener(this);
 
         // Añadir componentes al panel
         panelMenu.add(etiquetaTitulo);
         panelMenu.add(botonAgregar);
         panelMenu.add(botonMantenimiento);
         panelMenu.add(botonApagado);
+        panelMenu.add(nombreAdministrador);
         panelMenu.add(botonUsuario);
-
         panelPrincipal.add(panelMenu);
         add(panelPrincipal);
+    }
 
-
-    
-
-        }
-
-
+    @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == botonApagado) {
+            int opcion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Está seguro de que desea salir de la aplicación?",
+                    "Confirmar salida",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
 
-        
-        
+            if (opcion == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(null, "Apagando Sistema");
+                System.exit(0);
+            }
+
+
+        } else if (e.getSource() == botonUsuario) {
+            
+           
+
+            int opcion = JOptionPane.showConfirmDialog(
+                null,
+                "¿Deseas Cerrar Sesión?",
+                "Cerrar Sesión",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Cerrando Sesión");
+           VentanaLogin login = new VentanaLogin();
+           login.setVisible(true);
+           this.dispose();
         }
 
+        } else if (e.getSource() == botonMantenimiento) {
+            Mantenimiento mant = new Mantenimiento();
+            mant.setVisible(true);
+            this.dispose();
 
-         //Metodo para poder insertar imagenes a los JButton
+        } else if (e.getSource() == botonAgregar) {
+            Ingresar ing = new Ingresar();
+            ing.setVisible(true);
+            this.dispose();
+
+
+
+        }
+    }
+
     private void PintarB(JButton lbl, String ruta) {
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
@@ -169,8 +190,7 @@ public class Menu  extends JFrame implements ActionListener {
         this.repaint();
     }
 
-    private void Pintar(JLabel lbl, String ruta) { // Este metodo se utiliza para ponerle imagenes de fondo a los
-        // JLabels
+    private void Pintar(JLabel lbl, String ruta) {
         this.imagen = new ImageIcon(ruta);
         this.icono = new ImageIcon(
                 this.imagen.getImage().getScaledInstance(
@@ -179,13 +199,5 @@ public class Menu  extends JFrame implements ActionListener {
                         Image.SCALE_DEFAULT));
         lbl.setIcon(this.icono);
         this.repaint();
-
-
     }
-
-    }
-
-
-
-
-
+}
