@@ -88,7 +88,7 @@ public class Ingresar extends JFrame {
 
         // Botones
         JButton Agregar = new JButton("Agregar");
-        Agregar.setBounds(300, 360, 150, 35);
+        Agregar.setBounds(340, 350, 150, 35);
         estilizarBoton(Agregar);
         Agregar.setToolTipText("Agregar usuario al sistema");
         Agregar.addActionListener(new ActionListener() {
@@ -150,7 +150,7 @@ public class Ingresar extends JFrame {
 
         });
 
-        ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regresar.png");
+        ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regre.png");
         Image imagenEscalada = iconoRegresar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
         Regresar.setIcon(iconoEscalado);
