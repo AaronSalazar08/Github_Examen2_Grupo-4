@@ -13,8 +13,7 @@ import java.awt.event.ActionListener;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 
-public class Mantenimiento extends JFrame{
-
+public class Mantenimiento extends JFrame {
 
     public JPanel panel_mamtenimiento = new JPanel();
     public JButton btn_eliminar, btn_volver, btn_editar, btn_buscar, btn_refrescar;
@@ -23,7 +22,6 @@ public class Mantenimiento extends JFrame{
     public DefaultTableModel modelo;
     public JTable tabla_usuarios;
     public JScrollPane scroll;
-
 
     public Mantenimiento() {
         this.setTitle("Mantenimiento");
@@ -50,7 +48,6 @@ public class Mantenimiento extends JFrame{
         lb_id.setBounds(40, 30, 200, 60);
 
         // JTextField
-
         txt_id = new JTextField();
         txt_id.setBounds(100, 50, 150, 20);
         txt_id.setBorder(BorderFactory.createLineBorder(new Color(171, 171, 171)));
@@ -148,8 +145,7 @@ public class Mantenimiento extends JFrame{
         btn_refrescar.setBounds(590, 470, 150, 30);
         btn_refrescar.setForeground(new Color(255, 255, 255));
         btn_refrescar.setBackground(new Color(53, 89, 252));
-     
-        
+
         btn_refrescar.setBorderPainted(false);
 
         ImageIcon iconoRefrescar = new ImageIcon("Vista/Imagenes/refrescar (1).png");
@@ -198,4 +194,7 @@ public class Mantenimiento extends JFrame{
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
         txt_id.setText("");
-    }}
+    }
+
+}
+
