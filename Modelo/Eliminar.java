@@ -12,7 +12,6 @@ public class Eliminar {
 
     public Eliminar() {
         try {
-            // Cambia estos datos según tu configuración
             String url = "jdbc:mysql://localhost:3306/github";
             String usuario = "root";
             String contraseña = "Aiug010442004*";
