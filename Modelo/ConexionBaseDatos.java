@@ -2,11 +2,13 @@ package Modelo;
 import java.sql.*;
 
 import Controlador.ResultadoLogin;
+import Vista.VentanaLogin;
 
 public class ConexionBaseDatos {
     private static final String URL = "jdbc:mysql://localhost:3306/github?verifyServerCertificate=false&useSSL=true";
     private static final String Usuario = "root";
     private static final String Contrasena = "Proverbios18.22";
+
 
     public static Connection obtenerConexion() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
@@ -30,6 +32,7 @@ public class ConexionBaseDatos {
             }
         } catch (ClassNotFoundException e) {
             return new ResultadoLogin(false, "Error al cargar el driver MySQL: " + e.getMessage(), null);
+            
         } catch (SQLException e) {
             return new ResultadoLogin(false, "Error de conexión o consulta SQL: " + e.getMessage(), null);
         }

@@ -6,25 +6,22 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.CallableStatement;
+
 public class Eliminar {
     
     private Connection conexion;
 
-    public Eliminar() {
-        try {
-            // Cambia estos datos según tu configuración
-            String url = "jdbc:mysql://localhost:3306/github";
-            String usuario = "root";
-            String contraseña = "Aiug010442004*";
-            conexion = DriverManager.getConnection(url, usuario, contraseña);
-        } catch (SQLException e) {
-            System.out.println("Error al conectar con la base de datos: " + e.getMessage());
-        }
-    }
 
     public String eliminarUsuario(int idUsuario) {
+
         String mensaje = "";
+
         try {
+            String url = "jdbc:mysql://localhost:3306/github?verifyServerCertificate=false&useSSL=true";
+            String usuario = "root";
+            String contraseña = "Proverbios18.22";
+            conexion = DriverManager.getConnection(url, usuario, contraseña);
+
             String procedimiento = "{CALL sp_eliminar_usuario(?, ?, ?)}";  
             CallableStatement stmt = conexion.prepareCall(procedimiento);
 
@@ -46,10 +43,15 @@ public class Eliminar {
             }
 
             stmt.close();
-        } catch (SQLException e) {
-            mensaje = "Error en la operación: " + e.getMessage();
-            e.printStackTrace();
-        }
+       
         return mensaje;
+        } catch (SQLException e) {
+            System.out.println("Error al conectar con la base de datos: " + e.getMessage());
+        }
+                return mensaje;
+      
+      
+           
     }
 }
+
