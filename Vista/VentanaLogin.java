@@ -1,12 +1,10 @@
 package Vista;
 
-import javax.swing.*;
-
 import Controlador.ResultadoLogin;
 import Modelo.ConexionBaseDatos;
-
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class VentanaLogin extends JFrame {
     private JTextField campoUsuario;

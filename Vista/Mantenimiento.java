@@ -1,14 +1,12 @@
-package Vista;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+package Vista; 
 
 import Modelo.Mostrar;
-
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Mantenimiento extends JFrame implements ActionListener {
 
