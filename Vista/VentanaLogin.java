@@ -13,11 +13,9 @@ public class VentanaLogin extends JFrame {
     private JButton botonLogin;
     String nombreUsuario;
 
-
-
     @SuppressWarnings("unused")
     public VentanaLogin() {
-        setTitle("Bienvenido"); //Titulo del panel principal
+        setTitle("Bienvenido"); // Titulo del panel principal
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(750, 600);
         setLocationRelativeTo(null);
@@ -139,7 +137,6 @@ public class VentanaLogin extends JFrame {
         campoUsuario.addKeyListener(enterKeyListener);
         campoContrasena.addKeyListener(enterKeyListener);
 
-        
     }
 
     private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
@@ -184,9 +181,9 @@ public class VentanaLogin extends JFrame {
 
         ResultadoLogin resultado = ConexionBaseDatos.validarUsuario(usuario, contrasena);
         if (resultado.esExitoso()) {
-           
+
             nombreUsuario = resultado.obtenerNombreUsuario();
-            JOptionPane.showMessageDialog(null, "Bienvenido "+nombreUsuario);
+            JOptionPane.showMessageDialog(null, "Bienvenido " + nombreUsuario);
             dispose(); // Cierra la ventana de inicio de sesión
             Menu menu = new Menu(nombreUsuario);
 
@@ -196,15 +193,12 @@ public class VentanaLogin extends JFrame {
         }
     }
 
-  
-  
-  
-    /* private void mostrarError(String mensaje) {
-        etiquetaMensaje.setText(mensaje);
-        etiquetaMensaje.setForeground(Color.RED);
-    }*/
-
-
+    /*
+     * private void mostrarError(String mensaje) {
+     * etiquetaMensaje.setText(mensaje);
+     * etiquetaMensaje.setForeground(Color.RED);
+     * }
+     */
 
     private void mostrarError(String mensaje) {
         etiquetaMensaje.setText(mensaje);
@@ -212,33 +206,22 @@ public class VentanaLogin extends JFrame {
         limpiarCampos(); // Limpia los campos cuando hay error
     }
 
-
-
-    public String getnombreUsuario (){
-
+    public String getnombreUsuario() {
 
         return nombreUsuario;
 
-
     }
-    
+
     private void limpiarCampos() {
         campoUsuario.setText(""); // Limpia el campo de usuario
         campoContrasena.setText(""); // Limpia el campo de contraseña
     }
-    
-    
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             VentanaLogin ventana = new VentanaLogin();
             ventana.setVisible(true);
         });
     }
-
-
-
-
-
-    
 
 }
