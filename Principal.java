@@ -4,11 +4,13 @@ import Modelo.Buscar;
 import Modelo.Mostrar;
 import Vista.Mantenimiento;
 import Vista.MenuEditar;
+import Vista.VentanaLogin;
 
 public class Principal {
 
     public static void main(String[] args) {
 
+        VentanaLogin login = new VentanaLogin();
         Mantenimiento mantenimiento = new Mantenimiento();
         Mostrar mostrar = new Mostrar();
         Buscar buscar = new Buscar();
@@ -16,7 +18,7 @@ public class Principal {
         MenuEditar menuEditar = new MenuEditar();
         
         new ControladorMantenimiento(mantenimiento, mostrar, buscar, menuEditar, actualizar);
-        mantenimiento.setVisible(true);
+        login.setVisible(true);
         
     }
     

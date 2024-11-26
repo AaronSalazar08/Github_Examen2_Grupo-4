@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 public class ConexionBaseDatos {
     private static final String URL = "jdbc:mysql://localhost:3306/github?verifyServerCertificate=false&useSSL=true";
     private static final String Usuario = "root";
-    private static final String Contrasena = "091623";
+    private static final String Contrasena = "Proverbios18.22";
 
     public static Connection obtenerConexion() throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");

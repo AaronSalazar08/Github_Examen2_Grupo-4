@@ -170,7 +170,7 @@ public class Menu extends JFrame implements ActionListener {
             this.dispose();
 
         } else if (e.getSource() == botonAgregar) {
-            Ingresar ing = new Ingresar();
+            MenuInsertar ing = new MenuInsertar();
             ing.setVisible(true);
             this.dispose();
 
