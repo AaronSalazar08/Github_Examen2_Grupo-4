@@ -2,8 +2,8 @@ import Controlador.ControladorMantenimiento;
 import Modelo.Actualizar;
 import Modelo.Buscar;
 import Modelo.Mostrar;
-import Vista.MenuEditar;
 import Vista.Mantenimiento;
+import Vista.MenuEditar;
 
 public class Principal {
 

@@ -81,14 +81,14 @@ public class MenuInsertar extends JFrame {
         JTextField TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 160, 100);
         JTextField TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 160, 160);
         JTextField TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 160, 220);
-        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido (*)", hoverMensaje, 160, 280);
+        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido", hoverMensaje, 160, 280);
         JTextField TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 510, 100);
         JPasswordField TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 510, 160);
         JPasswordField TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
 
         // Botones
         JButton Agregar = new JButton("Agregar");
-        Agregar.setBounds(300, 360, 150, 35);
+        Agregar.setBounds(340, 350, 150, 35);
         estilizarBoton(Agregar);
         Agregar.setToolTipText("Agregar usuario al sistema");
         Agregar.addActionListener(new ActionListener() {
@@ -106,7 +106,7 @@ public class MenuInsertar extends JFrame {
                 String Usuario = TextLogin.getText();
                 String Nombre2 = TextSegundoNombre.getText();
 
-                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Usuario.isEmpty()
+                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Usuario.isEmpty()
                         || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Debe de llenar los campos obligatorios (*)", "Error",
                             JOptionPane.ERROR_MESSAGE);
@@ -143,14 +143,15 @@ public class MenuInsertar extends JFrame {
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Mantenimiento llamar = new Mantenimiento();
+                String a = "";
+                Menu llamar = new Menu( a);
                 llamar.setVisible(true);
                 dispose();
             }
 
         });
 
-        ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regresar.png");
+        ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regre.png");
         Image imagenEscalada = iconoRegresar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
         Regresar.setIcon(iconoEscalado);
