@@ -20,7 +20,7 @@ public class ConexionBaseDatos {
             // Registrar parámetros de entrada
             stmt.setString(1, usuario);
             stmt.setString(2, contrasena);
-
+            
             // Registrar parámetros de salida
             stmt.registerOutParameter(3, Types.BOOLEAN); // p_valido
             stmt.registerOutParameter(4, Types.INTEGER); // p_id_usuario

@@ -24,14 +24,15 @@ public class Actualizar {
             conexion.setAutoCommit(true);
 
             preparar = conexion.prepareStatement(SQL);
-         
-            preparar.setString(1, Nombre1);
-            preparar.setString(2, Nombre2);
-            preparar.setString(3, Apellido1);
-            preparar.setString(4, Apellido2);
-            preparar.setString(5, Usuario);
-            preparar.setString(6, Contra);
-            preparar.setInt(7, id);
+            
+            preparar.setInt(1, id);
+            preparar.setString(2, Nombre1);
+            preparar.setString(3, Nombre2);
+            preparar.setString(4, Apellido1);
+            preparar.setString(5, Apellido2);
+            preparar.setString(6, Usuario);
+            preparar.setString(7, Contra);
+        
 
            
             

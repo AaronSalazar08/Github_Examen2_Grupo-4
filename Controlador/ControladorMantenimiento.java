@@ -162,7 +162,7 @@ public class ControladorMantenimiento {
             JOptionPane.showMessageDialog(null, "Debe digitar el ID del usuario para continuar con la búsqueda");
         } else {
 
-            JOptionPane.showMessageDialog(null, "Buscando Usuario");
+            JOptionPane.showMessageDialog(null, "Buscando Usuario...");
 
             Object[][] datos = buscar.buscar_ID(id_obtenido);
 
@@ -210,7 +210,6 @@ public class ControladorMantenimiento {
 
             JOptionPane.showMessageDialog(null, "Verifique llenar los campos requerido");
         } else {
-
             actualizar.conectar_editar(id, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, usuario,
                     clave);
             menuEditar.setVisible(false);
@@ -276,6 +275,9 @@ public class ControladorMantenimiento {
 
         if (opcion == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(null, "Cerrando Sesión");
+            login.campoUsuario.setText(" ");
+
+            login.campoContrasena.setText(" ");
             login.setVisible(true);
             menu.setVisible(false);
 

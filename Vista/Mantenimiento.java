@@ -67,7 +67,7 @@ public class Mantenimiento extends JFrame {
         // Inicializando constantes para el JPanel
 
         // JLabel
-        lb_id = new JLabel("Cédula: ");
+        lb_id = new JLabel("ID: ");
         lb_id.setBounds(40, 30, 200, 60);
 
         // JTextField

@@ -89,54 +89,10 @@ public class MenuEditar extends JFrame {
 
         // Botones
         btn_editar = new JButton("Agregar");
-        btn_editar.setBounds(300, 360, 150, 35);
+        btn_editar.setBounds(520, 380, 150, 35);
         estilizarBoton(btn_editar);
         btn_editar.setToolTipText("Agregar usuario al sistema");
-        btn_editar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                char[] Contra = TextClave.getPassword();
-                String Contraseña = new String(Contra);
-
-                char[] ConfirmarContra = TextConfirmarClave.getPassword();
-                String ConfirmarContraseña = new String(ConfirmarContra);
-
-                String Nombre1 = TextPrimerNombre.getText();
-                String Apellido1 = TextPrimerApellido.getText();
-                String Apellido2 = TextSegundoApellido.getText();
-                String Usuario = TextLogin.getText();
-                String Nombre2 = TextSegundoNombre.getText();
-
-                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Usuario.isEmpty()
-                        || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Debe de llenar los campos obligatorios (*)", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    if (Contraseña.equals(ConfirmarContraseña)) {
-                        
-                        Insertar conexion = new Insertar();
-                        conexion.Conectar(Nombre1, Nombre2, Apellido1, Apellido2, Usuario, Contraseña);
-
-                TextPrimerNombre.setText("");
-                 TextPrimerApellido.setText("");
-                TextSegundoApellido.setText("");
-                TextLogin.setText("");
-                TextSegundoNombre.setText("");
-                TextConfirmarClave.setText("");
-                TextClave.setText("");
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-            }
-
-        });
-
-        
-
+       
         Regresar = new JButton("Regresar");
         Regresar.setBounds(20, 450, 150, 35);
         estilizarBoton2(Regresar);

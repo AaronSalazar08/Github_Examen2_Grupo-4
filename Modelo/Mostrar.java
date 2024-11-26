@@ -21,7 +21,7 @@ public class Mostrar {
 
             ResultSetMetaData metaData = rs.getMetaData();
             int columnCount = metaData.getColumnCount();
-
+            
             ArrayList<Object[]> dataList = new ArrayList<>();
             while (rs.next()) {
                 Object[] rowData = new Object[columnCount];
