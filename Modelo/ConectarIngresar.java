@@ -19,8 +19,8 @@ public String Conectar(String Nombre1, String Nombre2, String Apellido1, String 
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
                     conexion = DriverManager.getConnection(
-                            "jdbc:mysql://localhost:3306/prueba2?verifyServerCertificate=false&useSSL=true", "root",
-                            "Deiby_R04");
+                            "jdbc:mysql://localhost:3306/github?verifyServerCertificate=false&useSSL=true", "root",
+                            "Proverbios18.22");
                     conexion.setAutoCommit(true);
 
                     preparar = conexion.prepareStatement(SQL);

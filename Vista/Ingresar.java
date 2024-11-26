@@ -81,7 +81,7 @@ public class Ingresar extends JFrame {
         JTextField TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 160, 100);
         JTextField TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 160, 160);
         JTextField TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 160, 220);
-        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido (*)", hoverMensaje, 160, 280);
+        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido", hoverMensaje, 160, 280);
         JTextField TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 510, 100);
         JPasswordField TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 510, 160);
         JPasswordField TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
@@ -106,7 +106,7 @@ public class Ingresar extends JFrame {
                 String Usuario = TextLogin.getText();
                 String Nombre2 = TextSegundoNombre.getText();
 
-                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Usuario.isEmpty()
+                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Usuario.isEmpty()
                         || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Debe de llenar los campos obligatorios (*)", "Error",
                             JOptionPane.ERROR_MESSAGE);
@@ -143,7 +143,8 @@ public class Ingresar extends JFrame {
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Mantenimiento llamar = new Mantenimiento();
+                String a = "";
+                Menu llamar = new Menu( a);
                 llamar.setVisible(true);
                 dispose();
             }
