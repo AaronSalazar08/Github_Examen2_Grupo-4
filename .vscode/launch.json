@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Actualizar",
+            "request": "launch",
+            "mainClass": "Vista.Actualizar",
+            "projectName": "Github_Examen2_Grupo-4_a31b4ec"
+        },
+        {
+            "type": "java",
             "name": "Ingresar",
             "request": "launch",
             "mainClass": "Vista.Ingresar",
