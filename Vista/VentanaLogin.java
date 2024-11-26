@@ -13,6 +13,8 @@ public class VentanaLogin extends JFrame {
     private JButton botonLogin;
     String nombreUsuario;
 
+
+
     @SuppressWarnings("unused")
     public VentanaLogin() {
         setTitle("Bienvenido"); //Titulo del panel principal
@@ -182,20 +184,28 @@ public class VentanaLogin extends JFrame {
 
         ResultadoLogin resultado = ConexionBaseDatos.validarUsuario(usuario, contrasena);
         if (resultado.esExitoso()) {
-            dispose(); // Cierra la ventana de inicio de sesión
+           
             nombreUsuario = resultado.obtenerNombreUsuario();
+            JOptionPane.showMessageDialog(null, "Bienvenido "+nombreUsuario);
+            dispose(); // Cierra la ventana de inicio de sesión
             Menu menu = new Menu(nombreUsuario);
-            JOptionPane.showMessageDialog(null, "Bienvenido");
+
             menu.setVisible(true);
         } else {
             mostrarError(resultado.obtenerMensaje());
         }
     }
 
-   /* private void mostrarError(String mensaje) {
+  
+  
+  
+    /* private void mostrarError(String mensaje) {
         etiquetaMensaje.setText(mensaje);
         etiquetaMensaje.setForeground(Color.RED);
     }*/
+
+
+
     private void mostrarError(String mensaje) {
         etiquetaMensaje.setText(mensaje);
         etiquetaMensaje.setForeground(Color.RED);

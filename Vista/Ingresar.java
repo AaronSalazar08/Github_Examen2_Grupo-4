@@ -1,13 +1,13 @@
 package Vista;
 
+import Modelo.ConectarIngresar;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,8 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-
-import Modelo.ConectarIngresar;
 
 public class Ingresar extends JFrame {
     public static void main(String[] args) {
@@ -88,7 +86,7 @@ public class Ingresar extends JFrame {
 
         // Botones
         JButton Agregar = new JButton("Agregar");
-        Agregar.setBounds(340, 350, 150, 35);
+        Agregar.setBounds(520, 380, 150, 35);
         estilizarBoton(Agregar);
         Agregar.setToolTipText("Agregar usuario al sistema");
         Agregar.addActionListener(new ActionListener() {
@@ -136,9 +134,10 @@ public class Ingresar extends JFrame {
 
         
 
-        JButton Regresar = new JButton("Regresar");
-        Regresar.setBounds(20, 450, 150, 35);
+        JButton Regresar = new JButton("");
+        Regresar.setBounds(-30, 450, 200, 35);
         estilizarBoton2(Regresar);
+        Regresar.setOpaque(false);
         Regresar.setToolTipText("Volver al menu principal");
         Regresar.addActionListener(new ActionListener() {
             @Override
