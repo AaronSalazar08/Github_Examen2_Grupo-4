@@ -2,10 +2,17 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD
             "name": "Ingresar",
             "request": "launch",
             "mainClass": "Vista.Ingresar",
             "projectName": "Github_Examen2_Grupo-4_ab80b185"
+=======
+            "name": "MenuEditar",
+            "request": "launch",
+            "mainClass": "Vista.MenuEditar",
+            "projectName": "Github_Examen2_Grupo-4_a31b4ec"
+>>>>>>> 5396dc2f823bba124e5dd6115333d56c9ffa1f09
         },
         {
             "type": "java",
