@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class Menu extends JFrame implements ActionListener {
+public class Menu extends JFrame{
 
     public JButton botonMantenimiento, botonAgregar, botonApagado, botonUsuario;
     public JLabel fraseLabel, tituloLabel, labelDescripcion, nombreAdministrador, labelUSuario;
@@ -67,12 +67,11 @@ public class Menu extends JFrame implements ActionListener {
         botonAgregar.setBackground(new Color(53, 89, 252));
         botonAgregar.setForeground(Color.white);
         botonAgregar.setToolTipText("Agregar nuevo usuario al sistema");
-        ImageIcon iconoAgregar = new ImageIcon("Vista/Imagenes/agregar (2).png");
+        ImageIcon iconoAgregar = new ImageIcon("Vista/imagenes/agregar (2).png");
         Image imagenAgregar = iconoAgregar.getImage();
         Image imagenAgregarAjustada = imagenAgregar.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoAgregarAjustado = new ImageIcon(imagenAgregarAjustada);
         botonAgregar.setIcon(iconoAgregarAjustado);
-        botonAgregar.addActionListener(this);
 
         // Botón de Mantenimiento a los usuarios agregados
         botonMantenimiento = new JButton("    Mantenimiento Usuario       ");
@@ -80,12 +79,11 @@ public class Menu extends JFrame implements ActionListener {
         botonMantenimiento.setBackground(new Color(53, 89, 252));
         botonMantenimiento.setForeground(Color.white);
         botonMantenimiento.setToolTipText("Realizar acción sobre usuario");
-        ImageIcon iconoMantenimiento = new ImageIcon("Vista/Imagenes/Mantenimiento.png");
+        ImageIcon iconoMantenimiento = new ImageIcon("Vista/imagenes/Mantenimiento.png");
         Image imagenMantenimiento = iconoMantenimiento.getImage();
         Image imagenMantenimientoAjustada = imagenMantenimiento.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoMantenimientoAjustado = new ImageIcon(imagenMantenimientoAjustada);
         botonMantenimiento.setIcon(iconoMantenimientoAjustado);
-        botonMantenimiento.addActionListener(this);
 
         // Botón de Apagado
         botonApagado = new JButton("");
@@ -95,8 +93,7 @@ public class Menu extends JFrame implements ActionListener {
         botonApagado.setBorderPainted(false);
         botonApagado.setFocusPainted(false);
         botonApagado.setContentAreaFilled(false);
-        botonApagado.addActionListener(this);
-        ImageIcon iconoApagar = new ImageIcon("Vista/Imagenes/apagado.png");
+        ImageIcon iconoApagar = new ImageIcon("Vista/imagenes/apagado.png");
         Image imagenApagar = iconoApagar.getImage();
         Image imagenApagarAjustada = imagenApagar.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoApagarAjustado = new ImageIcon(imagenApagarAjustada);
@@ -115,7 +112,6 @@ public class Menu extends JFrame implements ActionListener {
         Image imagenUsuarioAjustada = imagenUsuario.getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon iconoUsuarioAjustado = new ImageIcon(imagenUsuarioAjustada);
         botonUsuario.setIcon(iconoUsuarioAjustado);
-        botonUsuario.addActionListener(this);
 
         // Añadir componentes al panel
         panelMenu.add(etiquetaTitulo);
@@ -128,56 +124,21 @@ public class Menu extends JFrame implements ActionListener {
         add(panelPrincipal);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botonApagado) {
-            int opcion = JOptionPane.showConfirmDialog(
-                    null,
-                    "¿Está seguro de que desea salir de la aplicación?",
-                    "Confirmar salida",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
+public void funcion_btn_agregar(ActionListener listener) {
+    botonAgregar.addActionListener(listener);
+}
 
-            if (opcion == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, "Apagando Sistema");
-                System.exit(0);
-            }
+public void funcion_btn_cerrarsesion(ActionListener listener) {
+    botonUsuario.addActionListener(listener);
+}
 
+public void funcion_btn_apagar(ActionListener listener) {
+    botonApagado.addActionListener(listener);
+}
 
-        } else if (e.getSource() == botonUsuario) {
-            
-           
-
-            int opcion = JOptionPane.showConfirmDialog(
-                null,
-                "¿Deseas Cerrar Sesión?",
-                "Cerrar Sesión",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-        );
-
-        if (opcion == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Cerrando Sesión");
-           VentanaLogin login = new VentanaLogin();
-           login.setVisible(true);
-           this.dispose();
-        }
-
-        } else if (e.getSource() == botonMantenimiento) {
-            Mantenimiento mant = new Mantenimiento();
-            mant.setVisible(true);
-            this.dispose();
-
-        } else if (e.getSource() == botonAgregar) {
-            MenuInsertar ing = new MenuInsertar();
-            ing.setVisible(true);
-            this.dispose();
-
-
-
-        }
-    }
+public void funcion_btn_mantenimiento(ActionListener listener) {
+    botonMantenimiento.addActionListener(listener);
+}
 
     private void PintarB(JButton lbl, String ruta) {
         this.imagen = new ImageIcon(ruta);

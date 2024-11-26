@@ -7,11 +7,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class VentanaLogin extends JFrame {
-    private JTextField campoUsuario;
-    private JPasswordField campoContrasena;
-    private JLabel etiquetaMensaje;
-    private JButton botonLogin;
-    String nombreUsuario;
+    public JTextField campoUsuario;
+    public JPasswordField campoContrasena;
+    public JLabel etiquetaMensaje;
+    public JButton botonLogin;
+    public String nombreUsuario;
 
     @SuppressWarnings("unused")
     public VentanaLogin() {
@@ -124,19 +124,24 @@ public class VentanaLogin extends JFrame {
         });
 
         // Acciones de inicio de sesión
-        botonLogin.addActionListener(e -> realizarLogin());
 
+        
+       
         KeyAdapter enterKeyListener = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    realizarLogin();
+                    //realizarLogin();
                 }
             }
         };
         campoUsuario.addKeyListener(enterKeyListener);
         campoContrasena.addKeyListener(enterKeyListener);
 
+    }
+
+    public void funcion_btn_login(ActionListener listener) {
+        botonLogin.addActionListener(listener);
     }
 
     private void centrarPanelLogin(JPanel panelLogin, JPanel panelPrincipal, int panelWidth, int panelHeight) {
@@ -170,58 +175,6 @@ public class VentanaLogin extends JFrame {
         });
     }
 
-    private void realizarLogin() {
-        String usuario = campoUsuario.getText();
-        String contrasena = new String(campoContrasena.getPassword());
 
-        if (usuario.isEmpty() || contrasena.isEmpty()) {
-            mostrarError("Por favor complete todos los campos");
-            return;
-        }
-
-        ResultadoLogin resultado = ConexionBaseDatos.validarUsuario(usuario, contrasena);
-        if (resultado.esExitoso()) {
-
-            nombreUsuario = resultado.obtenerNombreUsuario();
-            JOptionPane.showMessageDialog(null, "Bienvenido " + nombreUsuario);
-            dispose(); // Cierra la ventana de inicio de sesión
-            Menu menu = new Menu(nombreUsuario);
-
-            menu.setVisible(true);
-        } else {
-            mostrarError(resultado.obtenerMensaje());
-        }
-    }
-
-    /*
-     * private void mostrarError(String mensaje) {
-     * etiquetaMensaje.setText(mensaje);
-     * etiquetaMensaje.setForeground(Color.RED);
-     * }
-     */
-
-    private void mostrarError(String mensaje) {
-        etiquetaMensaje.setText(mensaje);
-        etiquetaMensaje.setForeground(Color.RED);
-        limpiarCampos(); // Limpia los campos cuando hay error
-    }
-
-    public String getnombreUsuario() {
-
-        return nombreUsuario;
-
-    }
-
-    private void limpiarCampos() {
-        campoUsuario.setText(""); // Limpia el campo de usuario
-        campoContrasena.setText(""); // Limpia el campo de contraseña
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            VentanaLogin ventana = new VentanaLogin();
-            ventana.setVisible(true);
-        });
-    }
 
 }

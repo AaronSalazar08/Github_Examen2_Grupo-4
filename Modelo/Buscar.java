@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
 public class Buscar {
 
     Connection con = null;
@@ -15,7 +14,7 @@ public class Buscar {
 
     String SP = "CALL BuscarUsuarioPorID(?);";
 
-    public  Object[][] buscar_ID(String id_buscado) {
+    public Object[][] buscar_ID(String id_buscado) {
 
         try {
 
@@ -26,25 +25,22 @@ public class Buscar {
             pstmt.setString(1, id_buscado);
             rs = pstmt.executeQuery();
 
-           
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
 
-                ResultSetMetaData metaData = rs.getMetaData();
-                int columnCount = metaData.getColumnCount();
+            ArrayList<Object[]> dataList = new ArrayList<>();
+            while (rs.next()) {
 
-                ArrayList<Object[]> dataList = new ArrayList<>();
-                while (rs.next()) {
-
-                    Object[] rowData = new Object[columnCount];
-                    for (int i = 1; i <= columnCount; i++) {
-                        rowData[i - 1] = rs.getObject(i);
-                    }
-                    dataList.add(rowData);
-                
+                Object[] rowData = new Object[columnCount];
+                for (int i = 1; i <= columnCount; i++) {
+                    rowData[i - 1] = rs.getObject(i);
+                }
+                dataList.add(rowData);
 
                 Object[][] dataArray = new Object[dataList.size()][];
                 return dataList.toArray(dataArray);
 
-                }
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
@@ -59,7 +55,7 @@ public class Buscar {
                 ex.printStackTrace();
             }
         }
-                return null;
+        return null;
 
     }
 

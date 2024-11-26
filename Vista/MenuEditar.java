@@ -22,17 +22,12 @@ import javax.swing.SwingUtilities;
 import Modelo.Insertar;
 
 public class MenuEditar extends JFrame {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MenuEditar menuEditar = new MenuEditar();
-            menuEditar.setVisible(true);
-        });
-    }
+
 
     public JTextField TextPrimerNombre, TextSegundoNombre, TextPrimerApellido, TextSegundoApellido,
     TextLogin;
     public JPasswordField TextClave, TextConfirmarClave;
-    public JButton btn_editar;
+    public JButton btn_editar, Regresar;
 
 
     public MenuEditar() { // Método constructor
@@ -142,19 +137,10 @@ public class MenuEditar extends JFrame {
 
         
 
-        JButton Regresar = new JButton("Regresar");
+        Regresar = new JButton("Regresar");
         Regresar.setBounds(20, 450, 150, 35);
         estilizarBoton2(Regresar);
         Regresar.setToolTipText("Volver al menu principal");
-        Regresar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Mantenimiento llamar = new Mantenimiento();
-                llamar.setVisible(true);
-                dispose();
-            }
-
-        });
 
         ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regresar.png");
         Image imagenEscalada = iconoRegresar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -227,6 +213,10 @@ public class MenuEditar extends JFrame {
 
 
     } // Fin del constructor
+
+    public void funcion_btn_regresar(ActionListener listener) {
+        Regresar.addActionListener(listener);
+    }
 
     private JTextField crearMensajes(String hoverText, JLabel hoverLabel, int x, int y) {
         JTextField textField = new JTextField();

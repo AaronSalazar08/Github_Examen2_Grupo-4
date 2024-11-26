@@ -26,7 +26,7 @@ public class Mantenimiento extends JFrame {
     @SuppressWarnings("unused")
     public Mantenimiento() {
         setTitle("Bienvenido"); //Titulo del panel principal
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(750, 600);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -233,6 +233,10 @@ public class Mantenimiento extends JFrame {
 
     public void funcion_btn_refrescar(ActionListener listener) {
         btn_refrescar.addActionListener(listener);
+    }
+
+    public void funcion_btn_volver(ActionListener listener) {
+        btn_volver.addActionListener(listener);
     }
 
     public void funcion_btn_buscar(ActionListener listener) {

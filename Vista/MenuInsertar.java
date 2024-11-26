@@ -22,12 +22,12 @@ import javax.swing.SwingUtilities;
 import Modelo.Insertar;
 
 public class MenuInsertar extends JFrame {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MenuInsertar Mostrar = new MenuInsertar();
-            Mostrar.setVisible(true);
-        });
-    }
+
+    public JButton Regresar;
+    public JButton Agregar;
+    public JTextField TextPrimerNombre, TextSegundoNombre, TextPrimerApellido, TextSegundoApellido,
+            TextLogin;
+    public JPasswordField TextClave, TextConfirmarClave;
 
     public MenuInsertar() { // Método constructor
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +68,6 @@ public class MenuInsertar extends JFrame {
         int panelWidth = 700, panelHeight = 500;
         panelLogin.setOpaque(false); // Transparente para preservar la apariencia
 
-        
         // Etiqueta de hover
         JLabel hoverMensaje = new JLabel("");
         hoverMensaje.setBounds(0, 0, 200, 20);
@@ -78,79 +77,26 @@ public class MenuInsertar extends JFrame {
         add(hoverMensaje);
 
         // Campos de texto
-        JTextField TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 160, 100);
-        JTextField TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 160, 160);
-        JTextField TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 160, 220);
-        JTextField TextSegundoApellido = crearMensajes("Ingrese su segundo apellido", hoverMensaje, 160, 280);
-        JTextField TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 510, 100);
-        JPasswordField TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 510, 160);
-        JPasswordField TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
+        TextPrimerNombre = crearMensajes("Ingrese su primer nombre (*)", hoverMensaje, 160, 100);
+        TextSegundoNombre = crearMensajes("Ingrese su segundo nombre", hoverMensaje, 160, 160);
+        TextPrimerApellido = crearMensajes("Ingrese su primer apellido (*)", hoverMensaje, 160, 220);
+        TextSegundoApellido = crearMensajes("Ingrese su segundo apellido", hoverMensaje, 160, 280);
+        TextLogin = crearMensajes("Ingrese su nombre de usuario (*)", hoverMensaje, 510, 100);
+        TextClave = crearMensajeContras("Ingrese su contraseña (*)", hoverMensaje, 510, 160);
+        TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
 
         // Botones
-        JButton Agregar = new JButton("Agregar");
+        Agregar = new JButton("Agregar");
         Agregar.setBounds(520, 380, 150, 35);
         estilizarBoton(Agregar);
         Agregar.setToolTipText("Agregar usuario al sistema");
-        Agregar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                char[] Contra = TextClave.getPassword();
-                String Contraseña = new String(Contra);
 
-                char[] ConfirmarContra = TextConfirmarClave.getPassword();
-                String ConfirmarContraseña = new String(ConfirmarContra);
-
-                String Nombre1 = TextPrimerNombre.getText();
-                String Apellido1 = TextPrimerApellido.getText();
-                String Apellido2 = TextSegundoApellido.getText();
-                String Usuario = TextLogin.getText();
-                String Nombre2 = TextSegundoNombre.getText();
-
-                if (Nombre1.isEmpty() || Apellido1.isEmpty() || Usuario.isEmpty()
-                        || Contraseña.isEmpty() || ConfirmarContraseña.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Debe de llenar los campos obligatorios (*)", "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    if (Contraseña.equals(ConfirmarContraseña)) {
-                        
-                        Insertar conexion = new Insertar();
-                        conexion.Conectar(Nombre1, Nombre2, Apellido1, Apellido2, Usuario, Contraseña);
-
-                TextPrimerNombre.setText("");
-                 TextPrimerApellido.setText("");
-                TextSegundoApellido.setText("");
-                TextLogin.setText("");
-                TextSegundoNombre.setText("");
-                TextConfirmarClave.setText("");
-                TextClave.setText("");
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-
-            }
-
-        });
-
-        
-
-        JButton Regresar = new JButton("");
+        Regresar = new JButton("");
         Regresar.setBounds(-30, 450, 200, 35);
+
         estilizarBoton2(Regresar);
         Regresar.setOpaque(false);
         Regresar.setToolTipText("Volver al menu principal");
-        Regresar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String a = "";
-                Menu llamar = new Menu( a);
-                llamar.setVisible(true);
-                dispose();
-            }
-
-        });
 
         ImageIcon iconoRegresar = new ImageIcon("Vista//imagenes//Regre.png");
         Image imagenEscalada = iconoRegresar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -213,7 +159,7 @@ public class MenuInsertar extends JFrame {
         add(panelPrincipal);
 
         centrarPanelLogin(panelLogin, panelPrincipal, panelWidth, panelHeight);
-       
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -221,13 +167,11 @@ public class MenuInsertar extends JFrame {
             }
         });
 
-
     } // Fin del constructor
 
     private JTextField crearMensajes(String hoverText, JLabel hoverLabel, int x, int y) {
         JTextField textField = new JTextField();
         textField.setBounds(x, y, 180, 30);
-
 
         textField.addMouseListener(new MouseAdapter() {
             @Override
@@ -246,6 +190,17 @@ public class MenuInsertar extends JFrame {
 
         return textField;
     }
+
+    public void funcion_btn_volver(ActionListener listener) {
+        Regresar.addActionListener(listener);
+    }
+
+    
+    public void funcion_btn_insertar(ActionListener listener) {
+        Agregar.addActionListener(listener);
+    }
+
+    
 
     private JPasswordField crearMensajeContras(String hoverText, JLabel hoverLabel, int x, int y) {
         JPasswordField passwordField = new JPasswordField();
@@ -273,6 +228,10 @@ public class MenuInsertar extends JFrame {
         int x = (panelPrincipal.getWidth() - panelWidth) / 2;
         int y = (panelPrincipal.getHeight() - panelHeight) / 2;
         panelLogin.setBounds(x, y, panelWidth, panelHeight);
+    }
+
+    public void funcion_btn_regresar(ActionListener listener) {
+        Regresar.addActionListener(listener);
     }
 
     private void estilizarBoton(JButton boton) {
@@ -306,7 +265,7 @@ public class MenuInsertar extends JFrame {
             }
 
             public void mouseExited(MouseEvent e) {
-                boton.setBackground(new Color(203, 32, 32)); 
+                boton.setBackground(new Color(203, 32, 32));
             }
         });
     }
