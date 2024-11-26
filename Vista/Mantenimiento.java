@@ -248,7 +248,6 @@ public class Mantenimiento extends JFrame {
         }
         tabla_usuarios.revalidate();
         tabla_usuarios.repaint();
-        txt_id.setText("");
     }
 
 }

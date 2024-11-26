@@ -1,4 +1,5 @@
 import Controlador.ControladorMantenimiento;
+import Modelo.Actualizar;
 import Modelo.Buscar;
 import Modelo.Mostrar;
 import Vista.MenuEditar;
@@ -11,9 +12,10 @@ public class Principal {
         Mantenimiento mantenimiento = new Mantenimiento();
         Mostrar mostrar = new Mostrar();
         Buscar buscar = new Buscar();
-        MenuEditar actualizar = new MenuEditar();
+        Actualizar actualizar = new Actualizar();
+        MenuEditar menuEditar = new MenuEditar();
         
-        new ControladorMantenimiento(mantenimiento, mostrar, buscar, actualizar);
+        new ControladorMantenimiento(mantenimiento, mostrar, buscar, menuEditar, actualizar);
         mantenimiento.setVisible(true);
         
     }

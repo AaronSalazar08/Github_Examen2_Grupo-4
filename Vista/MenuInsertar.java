@@ -19,17 +19,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import Modelo.ConectarIngresar;
+import Modelo.Insertar;
 
-public class Ingresar extends JFrame {
+public class MenuInsertar extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Ingresar Mostrar = new Ingresar();
+            MenuInsertar Mostrar = new MenuInsertar();
             Mostrar.setVisible(true);
         });
     }
 
-    public Ingresar() { // Método constructor
+    public MenuInsertar() { // Método constructor
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -113,7 +113,7 @@ public class Ingresar extends JFrame {
                 } else {
                     if (Contraseña.equals(ConfirmarContraseña)) {
                         
-                        ConectarIngresar conexion = new ConectarIngresar();
+                        Insertar conexion = new Insertar();
                         conexion.Conectar(Nombre1, Nombre2, Apellido1, Apellido2, Usuario, Contraseña);
 
                 TextPrimerNombre.setText("");

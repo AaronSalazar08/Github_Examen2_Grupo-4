@@ -19,19 +19,20 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import Modelo.ConectarIngresar;
+import Modelo.Insertar;
 
 public class MenuEditar extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            Ingresar Mostrar = new Ingresar();
-            Mostrar.setVisible(true);
+            MenuEditar menuEditar = new MenuEditar();
+            menuEditar.setVisible(true);
         });
     }
 
     public JTextField TextPrimerNombre, TextSegundoNombre, TextPrimerApellido, TextSegundoApellido,
     TextLogin;
     public JPasswordField TextClave, TextConfirmarClave;
+    public JButton btn_editar;
 
 
     public MenuEditar() { // Método constructor
@@ -92,11 +93,11 @@ public class MenuEditar extends JFrame {
          TextConfirmarClave = crearMensajeContras("Confirme su contraseña (*)", hoverMensaje, 510, 220);
 
         // Botones
-        JButton Agregar = new JButton("Agregar");
-        Agregar.setBounds(300, 360, 150, 35);
-        estilizarBoton(Agregar);
-        Agregar.setToolTipText("Agregar usuario al sistema");
-        Agregar.addActionListener(new ActionListener() {
+        btn_editar = new JButton("Agregar");
+        btn_editar.setBounds(300, 360, 150, 35);
+        estilizarBoton(btn_editar);
+        btn_editar.setToolTipText("Agregar usuario al sistema");
+        btn_editar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 char[] Contra = TextClave.getPassword();
@@ -118,7 +119,7 @@ public class MenuEditar extends JFrame {
                 } else {
                     if (Contraseña.equals(ConfirmarContraseña)) {
                         
-                        ConectarIngresar conexion = new ConectarIngresar();
+                        Insertar conexion = new Insertar();
                         conexion.Conectar(Nombre1, Nombre2, Apellido1, Apellido2, Usuario, Contraseña);
 
                 TextPrimerNombre.setText("");
@@ -163,7 +164,7 @@ public class MenuEditar extends JFrame {
         ImageIcon iconoGuardar = new ImageIcon("Vista//imagenes//Guardar.png");
         Image imagenEscalada2 = iconoGuardar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado2 = new ImageIcon(imagenEscalada2);
-        Agregar.setIcon(iconoEscalado2);
+        btn_editar.setIcon(iconoEscalado2);
 
         // Etiquetas fijas
         JLabel PrimerNombre = new JLabel("Primer nombre");
@@ -202,7 +203,7 @@ public class MenuEditar extends JFrame {
         panel_actualizar.add(ConfirmarClave);
 
         // Agregar componentes al panel
-        panel_actualizar.add(Agregar);
+        panel_actualizar.add(btn_editar);
         panel_actualizar.add(Regresar);
         panel_actualizar.add(TextPrimerNombre);
         panel_actualizar.add(TextSegundoNombre);
@@ -331,6 +332,10 @@ public class MenuEditar extends JFrame {
         TextLogin.setText(login);
         TextClave.setText(clave);
         TextConfirmarClave.setText(clave); 
+    }
+
+    public void funcion_btn_editar(ActionListener listener) {
+        btn_editar.addActionListener(listener);
     }
 
     
